@@ -19,11 +19,14 @@ public class Rooms {
     @Column(name = "Title")
     private String title;
 
-    @Column(name = "ImageJson")
-    private String imageJson;
+    @Column(name = "Image")
+    private String image;
 
-    @Column(name = "IsBooked")
-    private String isBooked;
+    @Column(name = "Description")
+    private String description;
+
+    @Column(name = "BookingStatus")
+    private String bookingStatus;
 
     @Column(name = "HostelId")
     private String hostelId;
