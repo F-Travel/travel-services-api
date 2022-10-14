@@ -11,8 +11,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Hotels")
-public class Hotels {
+@Table(name = "Activities")
+public class Activities {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -20,47 +20,25 @@ public class Hotels {
     @Column(name = "Title")
     private String title;
 
-    @Column(name = "Address")
-    private String address;
+    @Column(name = "Image")
+    private String image;
 
-    @Column(name = "Street")
-    private String street;
+    @Column(name = "StartTime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startTime;
 
-    @Column(name = "Province")
-    private String province;
+    @Column(name = "endTime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date endTime;
 
-    @Column(name = "District")
-    private String district;
-
-    @Column(name = "City")
-    private Integer city;
+    @Column(name = "Description")
+    private String description;
 
     @Column(name = "Latitude")
     private String latitude;
 
     @Column(name = "Longitude")
     private String longitude;
-
-    @Column(name = "Price")
-    private float price;
-
-    @Column(name = "Image")
-    private String image;
-
-    @Column(name = "Description")
-    private String description;
-
-    @Column(name = "IsDeposit")
-    private boolean isDeposit;
-
-    @Column(name = "Deposit")
-    private float deposit;
-
-    @Column(name = "HotelStatus")
-    private Integer hotelStatus;
-
-    @Column(name = "HotelOwnerId")
-    private Integer hotelOwnerId;
 
     @Column(name = "CreateTime")
     @Temporal(TemporalType.TIMESTAMP)
@@ -76,5 +54,3 @@ public class Hotels {
     @Column(name = "UpdatedBy")
     private String UpdatedBy;
 }
-
-

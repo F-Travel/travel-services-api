@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -15,11 +16,25 @@ public class RoomTypes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
 
     @Column(name = "TypeName")
     private String typeName;
 
     @Column(name = "Description")
     private String description;
+
+    @Column(name = "CreateTime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createTime;
+
+    @Column(name = "CreatedBy")
+    private String createdBy;
+
+    @Column(name = "UpdatedTime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedTime;
+
+    @Column(name = "UpdatedBy")
+    private String UpdatedBy;
 }

@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -13,7 +14,7 @@ import javax.persistence.*;
 public class Properties {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
 
     @Column(name = "PropertyName")
     private String propertyName;
@@ -24,6 +25,18 @@ public class Properties {
     @Column(name = "Icon")
     private String icon;
 
-    @Column(name = "IsExpense")
-    private String isExpense;
+    @Column(name = "CreateTime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createTime;
+
+    @Column(name = "CreatedBy")
+    private String createdBy;
+
+    @Column(name = "UpdatedTime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedTime;
+
+    @Column(name = "UpdatedBy")
+    private String UpdatedBy;
+
 }

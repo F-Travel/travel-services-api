@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -14,7 +15,7 @@ import javax.persistence.*;
 public class Rooms {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
 
     @Column(name = "Title")
     private String title;
@@ -26,11 +27,26 @@ public class Rooms {
     private String description;
 
     @Column(name = "BookingStatus")
-    private String bookingStatus;
+    private boolean bookingStatus;
 
     @Column(name = "HostelId")
-    private String hostelId;
+    private Integer hostelId;
 
     @Column(name = "RoomTypeId")
-    private String roomTypeId ;
+    private Integer roomTypeId ;
+
+    @Column(name = "CreateTime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createTime;
+
+    @Column(name = "CreatedBy")
+    private String createdBy;
+
+    @Column(name = "UpdatedTime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedTime;
+
+    @Column(name = "UpdatedBy")
+    private String UpdatedBy;
+
 }

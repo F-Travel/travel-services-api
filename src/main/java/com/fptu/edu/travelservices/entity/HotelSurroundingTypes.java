@@ -11,20 +11,15 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "BillItems")
-public class BillItems {
+@Table(name = "HotelSurroundingTypes")
+public class HotelSurroundingTypes {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "ItemName")
-    private String itemName;
-
-    @Column(name = "Value")
-    private String value;
-
-    @Column(name = "BillId")
-    private String billId;
+    @Column(name = "TypeName")
+    private String typeName;
 
     @Column(name = "CreateTime")
     @Temporal(TemporalType.TIMESTAMP)

@@ -11,41 +11,31 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Bills")
-public class Bills {
+@Table(name = "Booking")
+public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "PaymentMethod")
-    private String paymentMethod;
+    @Column(name = "RequestStatus")
+    private Integer requestStatus;
 
-    @Column(name = "TotalAmount")
-    private float totalAmount;
+    @Column(name = "CheckIn")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date checkIn;
 
-    @Column(name = "isBooking")
-    private String isBooking;
+    @Column(name = "CheckOut")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date checkOut;
 
-    @Column(name = "PaymentStatus")
-    private String paymentStatus;
-
-    @Column(name = "ExternalInvoice")
-    private String ExternalInvoice;
-
-    @Column(name = "ExternalTransaction")
-    private String ExternalTransaction;
-
-    @Column(name = "BookingId")
-    private String BookingId;
+    @Column(name = "DateApproved")
+    private String dateApproved;
 
     @Column(name = "UserId")
-    private String UserId;
-
-    @Column(name = "OwnerId")
-    private String ownerId;
+    private Integer userId;
 
     @Column(name = "RoomId")
-    private String roomId;
+    private Integer roomId;
 
     @Column(name = "CreateTime")
     @Temporal(TemporalType.TIMESTAMP)

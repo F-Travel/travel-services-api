@@ -14,19 +14,18 @@ import javax.persistence.*;
 public class Feedbacks {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
 
     @Column(name = "StarPoint")
-    private String starPoint;
+    private Integer starPoint;
 
     @Column(name = "Comment")
     private String comment;
 
     @Column(name = "UserId ")
-    private String userId ;
+    private Integer userId ;
 
-//    @ManyToOne
-//    @JoinColumn(name = "HostelId")
-//    private Hotels hostelId;
+    @Column(name = "HostelId")
+    private Integer hostelId;
 
 }

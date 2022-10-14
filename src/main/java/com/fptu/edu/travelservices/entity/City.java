@@ -11,20 +11,17 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "BillItems")
-public class BillItems {
+@Table(name = "City")
+public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "ItemName")
-    private String itemName;
+    @Column(name = "CityName")
+    private String cityName;
 
-    @Column(name = "Value")
-    private String value;
-
-    @Column(name = "BillId")
-    private String billId;
+    @Column(name = "CityImage")
+    private String cityImage;
 
     @Column(name = "CreateTime")
     @Temporal(TemporalType.TIMESTAMP)
