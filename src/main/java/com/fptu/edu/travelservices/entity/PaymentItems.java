@@ -11,8 +11,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "BillItems")
-public class BillItems {
+@Table(name = "PaymentItems")
+public class PaymentItems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -23,8 +23,8 @@ public class BillItems {
     @Column(name = "Value")
     private String value;
 
-    @Column(name = "BillId")
-    private String billId;
+    @Column(name = "PaymentId")
+    private Integer paymentId;
 
     @Column(name = "CreateTime")
     @Temporal(TemporalType.TIMESTAMP)
