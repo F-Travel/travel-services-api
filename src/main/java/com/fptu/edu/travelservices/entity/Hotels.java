@@ -41,26 +41,20 @@ public class Hotels {
     @Column(name = "Longitude")
     private String longitude;
 
-    @Column(name = "Price")
-    private float price;
-
     @Column(name = "Image")
     private String image;
 
     @Column(name = "Description")
     private String description;
 
-    @Column(name = "IsDeposit")
-    private boolean isDeposit;
+    @Column(name = "Phone")
+    private String phone;
 
-    @Column(name = "Deposit")
-    private float deposit;
+    @Column(name = "OwnerId")
+    private int ownerId;
 
-    @Column(name = "HotelStatus")
-    private Integer hotelStatus;
-
-    @Column(name = "HotelOwnerId")
-    private Integer hotelOwnerId;
+    @Column(name = "StatusHotel")
+    private String statusHotel;
 
     @Column(name = "CreateTime")
     @Temporal(TemporalType.TIMESTAMP)
