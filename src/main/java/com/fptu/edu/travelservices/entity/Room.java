@@ -11,18 +11,30 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "RoomTypes")
-public class RoomTypes {
+@Table(name = "Room")
+public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "TypeName")
-    private String typeName;
+    @Column(name = "TypeRoom")
+    private String typeRoom;
 
     @Column(name = "Description")
     private String description;
+
+    @Column(name = "Price")
+    private String price;
+
+    @Column(name = "NumberPeople")
+    private String numberPeople;
+
+    @Column(name = "Area")
+    private String area;
+
+    @Column(name = "Image")
+    private String image;
 
     @Column(name = "CreateTime")
     @Temporal(TemporalType.TIMESTAMP)
@@ -36,5 +48,5 @@ public class RoomTypes {
     private Date updatedTime;
 
     @Column(name = "UpdatedBy")
-    private String UpdatedBy;
+    private String updatedBy;
 }
