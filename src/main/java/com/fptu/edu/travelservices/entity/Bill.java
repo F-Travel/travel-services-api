@@ -11,8 +11,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Payment")
-public class Payment {
+@Table(name = "Bill")
+public class Bill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -26,8 +26,14 @@ public class Payment {
     @Column(name = "isBooking")
     private String isBooking;
 
+    @Column(name = "DateBooking")
+    private String dateBooking;
+
     @Column(name = "PaymentStatus")
     private String paymentStatus;
+
+    @Column(name = "PaymentDate")
+    private String paymentDate;
 
     @Column(name = "ExternalInvoice")
     private String ExternalInvoice;

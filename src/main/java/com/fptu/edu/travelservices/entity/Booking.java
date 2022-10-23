@@ -34,6 +34,9 @@ public class Booking {
     @Column(name = "UserId")
     private Integer userId;
 
+    @Column(name = "OwnerId")
+    private Integer ownerId;
+
     @Column(name = "RoomId")
     private Integer roomId;
 

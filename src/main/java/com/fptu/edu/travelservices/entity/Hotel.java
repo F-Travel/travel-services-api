@@ -11,14 +11,35 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Hotels")
-public class Hotels {
+@Table(name = "Hotel")
+public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "Title")
     private String title;
+
+    @Column(name = "Description")
+    private String description;
+
+    @Column(name = "Phone")
+    private String phone;
+
+    @Column(name = "Image")
+    private String image;
+
+    @Column(name = "Image1")
+    private String image1;
+
+    @Column(name = "Image2")
+    private String image2;
+
+    @Column(name = "Image3")
+    private String image3;
+
+    @Column(name = "Image4")
+    private String image4;
 
     @Column(name = "Address")
     private String address;
@@ -41,20 +62,20 @@ public class Hotels {
     @Column(name = "Longitude")
     private String longitude;
 
-    @Column(name = "Image")
-    private String image;
+    @Column(name = "StatusHotel")
+    private String statusHotel;
 
-    @Column(name = "Description")
-    private String description;
+    @Column(name = "CheckInTime")
+    private String checkInTime;
 
-    @Column(name = "Phone")
-    private String phone;
+    @Column(name = "CheckOutTime")
+    private String checkOutTime;
+
+    @Column(name = "IsPaymentCard")
+    private Boolean isPaymentCard;
 
     @Column(name = "OwnerId")
     private int ownerId;
-
-    @Column(name = "StatusHotel")
-    private String statusHotel;
 
     @Column(name = "CreateTime")
     @Temporal(TemporalType.TIMESTAMP)

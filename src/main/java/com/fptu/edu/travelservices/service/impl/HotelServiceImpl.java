@@ -1,8 +1,7 @@
 package com.fptu.edu.travelservices.service.impl;
 import com.fptu.edu.travelservices.dto.in.HotelRegisterInputDto;
 import com.fptu.edu.travelservices.dto.out.GetListHotelOutputDto;
-import com.fptu.edu.travelservices.dto.out.UserOutputDto;
-import com.fptu.edu.travelservices.entity.Hotels;
+import com.fptu.edu.travelservices.entity.Hotel;
 import com.fptu.edu.travelservices.repository.HotelRepository;
 import com.fptu.edu.travelservices.service.HotelService;
 import org.modelmapper.ModelMapper;
@@ -32,7 +31,7 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public List<GetListHotelOutputDto> getHotels() {
         //get list hotel DB
-        List<Hotels> hotels = hotelRepository.findAll();
+        List<Hotel> hotels = hotelRepository.findAll();
 
         //mapping hotel
         Type listType = new TypeToken<List<GetListHotelOutputDto>>(){}.getType();

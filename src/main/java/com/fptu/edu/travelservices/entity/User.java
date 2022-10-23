@@ -24,11 +24,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "FirstName")
-    private String firstName;
-
-    @Column(name = "LastName")
-    private String lastName;
+    @Column(name = "FullName")
+    private String fullName;
 
     @NotBlank
     @Size(max = 20)
@@ -48,8 +45,8 @@ public class User {
     @Column(name = "Address")
     private String address;
 
-    @Column(name = "Interests")
-    private String interests;
+    @Column(name = "Avatar")
+    private String avatar;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",

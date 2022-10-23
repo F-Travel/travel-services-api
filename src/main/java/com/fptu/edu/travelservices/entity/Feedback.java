@@ -10,8 +10,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Feedbacks")
-public class Feedbacks {
+@Table(name = "Feedback")
+public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -27,5 +27,4 @@ public class Feedbacks {
 
     @Column(name = "HostelId")
     private Integer hostelId;
-
 }
