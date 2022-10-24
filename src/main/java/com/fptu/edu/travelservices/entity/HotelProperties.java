@@ -17,8 +17,11 @@ public class HotelProperties {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "DescriptionPropertiesType")
-    private String title;
+    @Column(name = "PropertiesType")
+    private String propertiesType;
+
+    @Column(name = "PropertiesTypeId")
+    private int propertiesTypeId;
 
     @Column(name = "CreateTime")
     @Temporal(TemporalType.TIMESTAMP)
