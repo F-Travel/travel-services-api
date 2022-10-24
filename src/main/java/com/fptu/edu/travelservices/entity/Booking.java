@@ -17,19 +17,20 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "RequestStatus")
-    private Integer requestStatus;
-
     @Column(name = "CheckIn")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date checkIn;
+    private String checkIn;
 
     @Column(name = "CheckOut")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date checkOut;
+    private String checkOut;
+
+    @Column(name = "DateBooking")
+    private String DateBooking;
 
     @Column(name = "DateApproved")
     private String dateApproved;
+
+    @Column(name = "RequestStatus")
+    private Integer requestStatus;
 
     @Column(name = "UserId")
     private Integer userId;

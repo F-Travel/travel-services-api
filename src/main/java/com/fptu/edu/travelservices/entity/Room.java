@@ -18,23 +18,35 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "TypeRoom")
-    private String typeRoom;
-
-    @Column(name = "Description")
-    private String description;
-
-    @Column(name = "Price")
-    private String price;
-
-    @Column(name = "NumberPeople")
-    private String numberPeople;
+    @Column(name = "TypeRoomNm")
+    private String typeRoomNm;
 
     @Column(name = "Area")
     private String area;
 
     @Column(name = "Image")
-    private String image;
+    private String Image;
+
+    @Column(name = "Image1")
+    private String Image1;
+
+    @Column(name = "Image2")
+    private String Image2;
+
+    @Column(name = "Image3")
+    private String Image3;
+
+    @Column(name = "Image4")
+    private String Image4;
+
+    @Column(name = "Price")
+    private float price;
+
+    @Column(name = "NumberPeople")
+    private String numberPeople;
+
+    @Column(name = "HotelId")
+    private int hotelId;
 
     @Column(name = "CreateTime")
     @Temporal(TemporalType.TIMESTAMP)

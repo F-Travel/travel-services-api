@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoomPropertiesRequest {
+public class HotelPropertiesRequest {
+    private String propertiesTypeId;
 
-    private String propertiesName;
-
+    private String propertiesType;
 }

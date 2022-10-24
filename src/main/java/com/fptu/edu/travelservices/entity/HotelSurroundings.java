@@ -17,9 +17,6 @@ public class HotelSurroundings {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "Title")
-    private String title;
-
     @Column(name = "SurroundingNm")
     private String surroundingNm;
 
@@ -28,6 +25,9 @@ public class HotelSurroundings {
 
     @Column(name = "Longitude")
     private String longitude;
+
+    @Column(name = "SurroundingTypeId")
+    private String surroundingTypeId;
 
     @Column(name = "CreateTime")
     @Temporal(TemporalType.TIMESTAMP)

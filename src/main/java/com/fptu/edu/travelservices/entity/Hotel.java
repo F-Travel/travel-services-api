@@ -17,8 +17,8 @@ public class Hotel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "Title")
-    private String title;
+    @Column(name = "HotelName")
+    private String hotelName;
 
     @Column(name = "Description")
     private String description;
@@ -44,15 +44,6 @@ public class Hotel {
     @Column(name = "Address")
     private String address;
 
-    @Column(name = "Street")
-    private String street;
-
-    @Column(name = "Province")
-    private String province;
-
-    @Column(name = "District")
-    private String district;
-
     @Column(name = "City")
     private Integer city;
 
@@ -75,7 +66,7 @@ public class Hotel {
     private Boolean isPaymentCard;
 
     @Column(name = "OwnerId")
-    private int ownerId;
+    private long ownerId;
 
     @Column(name = "CreateTime")
     @Temporal(TemporalType.TIMESTAMP)

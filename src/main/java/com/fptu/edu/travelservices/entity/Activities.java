@@ -24,12 +24,10 @@ public class Activities {
     private String image;
 
     @Column(name = "StartTime")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date startTime;
+    private String startTime;
 
     @Column(name = "endTime")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date endTime;
+    private String endTime;
 
     @Column(name = "Description")
     private String description;

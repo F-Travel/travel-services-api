@@ -4,20 +4,30 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class HotelRegisterRequest {
 
-    private String title;
+    private String hotelName;
+
+    private String description;
+
+    private String phone;
+
+    private String image;
+
+    private String image1;
+
+    private String image2;
+
+    private String image3;
+
+    private String image4;
 
     private String address;
-
-    private String street;
-
-    private String province;
-
-    private String district;
 
     private String city;
 
@@ -25,11 +35,13 @@ public class HotelRegisterRequest {
 
     private String longitude;
 
-    private String phone;
+    private String checkInTime;
 
-    private String image;
+    private String checkOutTime;
 
-    private String description;
+    private String isPaymentCard;
 
     private int ownerId;
+
+    private List<HotelPropertiesRequest> hotelPropertiesRequests;
 }

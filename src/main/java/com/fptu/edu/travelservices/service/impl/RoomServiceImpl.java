@@ -8,13 +8,10 @@ import com.fptu.edu.travelservices.entity.RoomProperties;
 import com.fptu.edu.travelservices.repository.RoomPropertiesRepository;
 import com.fptu.edu.travelservices.repository.RoomRepository;
 import com.fptu.edu.travelservices.service.RoomService;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +33,8 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public void saveRoom(RoomRegisterInputDto inputDto) {
         Room room = mapper.map(inputDto, Room.class);
+        room.setPrice(Float.parseFloat(inputDto.getPrice()));
+        room.setHotelId(Integer.parseInt(inputDto.getHotelId()));
         room.setCreatedBy("User");
         room.setCreateTime(dateCommon.getDate());
         room.setUpdatedBy("User");
@@ -52,7 +51,6 @@ public class RoomServiceImpl implements RoomService {
 
         roomProperties.stream().map(r -> {
             RoomProperties properties  = new RoomProperties();
-            properties.setPropertiesId(r.getPropertiesId());
             properties.setPropertyName(r.getPropertiesName());
             properties.setRoomId(roomId);
             properties.setCreatedBy("User");
