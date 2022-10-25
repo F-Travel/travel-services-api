@@ -10,7 +10,7 @@ import javax.persistence.Column;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetListHotelResponse {
+public class HotelGetListResponse {
     @JsonProperty("id")
     private int id;
 

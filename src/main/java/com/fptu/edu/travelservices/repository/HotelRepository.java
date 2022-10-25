@@ -18,4 +18,7 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
     void createHotel(String title,String address, String street, String province, String district,
                      String city, String latitude, String longitude, String phone, String description,
                      int ownerId);
+
+    @Query(value = "SELECT Max(id) as hotelId FROM hotel", nativeQuery = true)
+    int getFistIdHotel();
 }

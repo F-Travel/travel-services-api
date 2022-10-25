@@ -1,7 +1,6 @@
 package com.fptu.edu.travelservices.controller;
 import com.fptu.edu.travelservices.controller.request.HotelRegisterRequest;
-import com.fptu.edu.travelservices.controller.response.GetAllUserResponse;
-import com.fptu.edu.travelservices.controller.response.GetListHotelResponse;
+import com.fptu.edu.travelservices.controller.response.HotelGetListResponse;
 import com.fptu.edu.travelservices.dto.in.HotelRegisterInputDto;
 import com.fptu.edu.travelservices.dto.out.GetListHotelOutputDto;
 import com.fptu.edu.travelservices.service.HotelService;
@@ -31,10 +30,12 @@ public class HotelController {
         //Mapping form request register hotel
         HotelRegisterInputDto hotelRegisterInputDto = mapper.map(request, HotelRegisterInputDto.class);
 
-        // Create hotel
-        hotelService.saveHotel(hotelRegisterInputDto);
+        /*call hotel service register hotel info*/
+        int hotelRegister =  hotelService.saveHotel(hotelRegisterInputDto);
 
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(hotelRegister);
     }
 
     @GetMapping("/hotel-list")
@@ -43,8 +44,8 @@ public class HotelController {
         List<GetListHotelOutputDto> outInputDtos = hotelService.getHotels();
 
         //mapping hotel
-        Type listType = new TypeToken<List<GetListHotelResponse>>(){}.getType();
-        List<GetListHotelResponse> hotelResponses = mapper.map(outInputDtos , listType);
+        Type listType = new TypeToken<List<HotelGetListResponse>>(){}.getType();
+        List<HotelGetListResponse> hotelResponses = mapper.map(outInputDtos , listType);
 
         return ResponseEntity
                 .status(HttpStatus.OK)

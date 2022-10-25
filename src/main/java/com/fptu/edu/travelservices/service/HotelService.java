@@ -6,7 +6,7 @@ import com.fptu.edu.travelservices.dto.out.GetListHotelOutputDto;
 import java.util.List;
 
 public interface HotelService {
-    void saveHotel(HotelRegisterInputDto inputDto);
+    int saveHotel(HotelRegisterInputDto inputDto);
 
     List<GetListHotelOutputDto> getHotels();
 }

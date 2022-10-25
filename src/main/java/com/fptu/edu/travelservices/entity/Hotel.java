@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.util.Date;
 
 @Data
@@ -44,14 +45,14 @@ public class Hotel {
     @Column(name = "Address")
     private String address;
 
-    @Column(name = "City")
-    private Integer city;
+    @Column(name = "CityId")
+    private Integer cityId;
 
     @Column(name = "Latitude")
-    private String latitude;
+    private float latitude;
 
     @Column(name = "Longitude")
-    private String longitude;
+    private float longitude;
 
     @Column(name = "StatusHotel")
     private String statusHotel;

@@ -3,7 +3,7 @@ package com.fptu.edu.travelservices.service.impl;
 import com.fptu.edu.travelservices.common.DateCommon;
 import com.fptu.edu.travelservices.dto.in.RoomPropertiesInputDto;
 import com.fptu.edu.travelservices.dto.in.RoomRegisterInputDto;
-import com.fptu.edu.travelservices.entity.Room;
+import com.fptu.edu.travelservices.entity.Room_Type;
 import com.fptu.edu.travelservices.entity.RoomProperties;
 import com.fptu.edu.travelservices.repository.RoomPropertiesRepository;
 import com.fptu.edu.travelservices.repository.RoomRepository;
@@ -32,7 +32,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public void saveRoom(RoomRegisterInputDto inputDto) {
-        Room room = mapper.map(inputDto, Room.class);
+        Room_Type room = mapper.map(inputDto, Room_Type.class);
         room.setPrice(Float.parseFloat(inputDto.getPrice()));
         room.setHotelId(Integer.parseInt(inputDto.getHotelId()));
         room.setCreatedBy("User");

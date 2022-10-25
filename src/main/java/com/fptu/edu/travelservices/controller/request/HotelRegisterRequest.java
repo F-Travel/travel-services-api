@@ -29,7 +29,7 @@ public class HotelRegisterRequest {
 
     private String address;
 
-    private String city;
+    private String cityId;
 
     private String latitude;
 
@@ -41,7 +41,7 @@ public class HotelRegisterRequest {
 
     private String isPaymentCard;
 
-    private int ownerId;
+    private String ownerId;
 
-    private List<HotelPropertiesRequest> hotelPropertiesRequests;
+    private List<HotelPropertiesRequest> hotelProperties;
 }

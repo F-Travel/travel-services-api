@@ -39,9 +39,16 @@ public class User {
     private String email;
 
     @NotBlank
-    @Column(name = "Phone")
-    private String phone;
+    @Size(max = 20, min = 6)
+    @Column(name = "Password")
+    private String password;
 
+    @NotBlank
+    @Column(name = "Phone")
+
+    @NotBlank
+    @Size(max = 11)
+    private String phone;
     @Column(name = "Address")
     private String address;
 
