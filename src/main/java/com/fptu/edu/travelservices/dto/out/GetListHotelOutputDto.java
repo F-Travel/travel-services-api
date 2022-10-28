@@ -10,13 +10,15 @@ import lombok.NoArgsConstructor;
 public class GetListHotelOutputDto {
     private int id;
 
-    private String title;
+    private String hotelName;
 
     private String address;
 
     private String image;
 
-    private String phone;
+    private int phone;
 
-    private String statusHotel;
+    private String description;
+
+    private int startPoint;
 }

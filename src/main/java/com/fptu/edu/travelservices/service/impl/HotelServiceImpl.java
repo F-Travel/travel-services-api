@@ -1,11 +1,19 @@
 package com.fptu.edu.travelservices.service.impl;
 
 import com.fptu.edu.travelservices.common.DateCommon;
+import com.fptu.edu.travelservices.dto.FeedBack;
+import com.fptu.edu.travelservices.dto.HotelPropertiesList;
+import com.fptu.edu.travelservices.dto.HotelSearch;
 import com.fptu.edu.travelservices.dto.in.HotelPropertiesInputDto;
 import com.fptu.edu.travelservices.dto.in.HotelRegisterInputDto;
+import com.fptu.edu.travelservices.dto.out.FeedBackOutputDto;
 import com.fptu.edu.travelservices.dto.out.GetListHotelOutputDto;
+import com.fptu.edu.travelservices.dto.out.HotelDetailOutputDto;
+import com.fptu.edu.travelservices.dto.out.HotelPropertiesOutputDto;
 import com.fptu.edu.travelservices.entity.Hotel;
 import com.fptu.edu.travelservices.entity.HotelProperties;
+import com.fptu.edu.travelservices.exception.ResourceNotFoundException;
+import com.fptu.edu.travelservices.repository.FeedBackRepository;
 import com.fptu.edu.travelservices.repository.HotelPropertiesRepository;
 import com.fptu.edu.travelservices.repository.HotelRepository;
 import com.fptu.edu.travelservices.service.HotelService;
@@ -16,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,6 +38,9 @@ public class HotelServiceImpl implements HotelService {
 
     @Autowired
     private HotelPropertiesRepository hotelPropertiesRepository;
+
+    @Autowired
+    private FeedBackRepository feedBackRepository;
 
     @Autowired
     private ModelMapper mapper;
@@ -66,14 +78,73 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public List<GetListHotelOutputDto> getHotels() {
-        //get list hotel DB
+        /*get list hotel DB*/
         List<Hotel> hotels = hotelRepository.findAll();
 
-        //mapping hotel
+        if(hotels.isEmpty()){
+            new ResourceNotFoundException("");
+        }
+
         Type listType = new TypeToken<List<GetListHotelOutputDto>>(){}.getType();
         List<GetListHotelOutputDto> hotelOutputDtos = mapper.map(hotels , listType);
 
         return hotelOutputDtos;
+    }
+
+    @Override
+    public List<GetListHotelOutputDto> searchHotels(String param) {
+
+        List<HotelSearch> hotels = hotelRepository.searchHotel(param);
+
+        if(hotels.isEmpty()){
+            new ResourceNotFoundException("");
+        }
+
+        Type listType = new TypeToken<List<GetListHotelOutputDto>>(){}.getType();
+        List<GetListHotelOutputDto> hotelOutputDtos = mapper.map(hotels , listType);
+
+        return hotelOutputDtos;
+    }
+
+    @Override
+    public HotelDetailOutputDto getDetailHotel(int id) {
+
+        /*get hotel detail*/
+        Optional<Hotel> hotels = hotelRepository.findById(id);
+
+        HotelDetailOutputDto outputDto = HotelDetailOutputDto.builder()
+                .hotelName(hotels.get().getHotelName())
+                .description(hotels.get().getDescription())
+                .phone(hotels.get().getPhone())
+                .image(hotels.get().getImage())
+                .image1(hotels.get().getImage1())
+                .image2(hotels.get().getImage2())
+                .image3(hotels.get().getImage3())
+                .image4(hotels.get().getImage4())
+                .address(hotels.get().getAddress())
+                .checkOutTime(hotels.get().getCheckOutTime())
+                .checkInTime(hotels.get().getCheckInTime())
+                .latitude(String.valueOf(hotels.get().getLatitude()))
+                .longitude(String.valueOf(hotels.get().getLongitude()))
+                .isPaymentCard(String.valueOf(hotels.get().getIsPaymentCard()))
+                .build();
+
+        /*get properties hotel*/
+        List<FeedBack> feedBacks = feedBackRepository.getListFeedBack(id);
+
+        Type listTypeFeedback = new TypeToken<List<FeedBackOutputDto>>(){}.getType();
+        List<FeedBackOutputDto> feedBackOutputDtos = mapper.map(feedBacks , listTypeFeedback);
+
+        /*get properties hotel*/
+        List<HotelPropertiesList> properties = hotelPropertiesRepository.getListHotelProperties(id);
+
+        Type listTypeHotelProperties = new TypeToken<List<HotelPropertiesOutputDto>>(){}.getType();
+        List<HotelPropertiesOutputDto> hotelPropertiesOutputDtos = mapper.map(properties , listTypeHotelProperties);
+
+        outputDto.setFeedBack(feedBackOutputDtos);
+        outputDto.setHotelProperties(hotelPropertiesOutputDtos);
+
+        return outputDto;
     }
 
     private void saveHotelProperties(final List<HotelPropertiesInputDto> hotelPropertiesInputDtos, final int hotelId){

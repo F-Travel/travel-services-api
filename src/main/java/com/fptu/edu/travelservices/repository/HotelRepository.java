@@ -1,12 +1,14 @@
 package com.fptu.edu.travelservices.repository;
 
 import com.fptu.edu.travelservices.entity.Hotel;
+import com.fptu.edu.travelservices.dto.HotelSearch;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -21,4 +23,21 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
 
     @Query(value = "SELECT Max(id) as hotelId FROM hotel", nativeQuery = true)
     int getFistIdHotel();
+
+    @Query(value = "SELECT \n" +
+            "h.id as id,\n" +
+            "h.hotel_name as hotelName,\n" +
+            "h.address as address,\n" +
+            "h.description as description,\n" +
+            "h.image as image,\n" +
+            "h.phone as phone,\n" +
+            "AVG(f.star_point) as startPoint\n" +
+            "FROM hotel as h\n" +
+            "left Join feedback as f\n" +
+            "ON h.id = f.hostel_id\n" +
+            "where\n" +
+            "match (h.address, h.hotel_name, h.description)\n" +
+            "against (?1)\n" +
+            "GROUP BY h.id", nativeQuery = true)
+    List<HotelSearch> searchHotel(String param);
 }
