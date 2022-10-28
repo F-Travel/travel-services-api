@@ -1,6 +1,7 @@
-package com.fptu.edu.travelservices.controller.request;
+package com.fptu.edu.travelservices.dto.out;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,8 +10,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class HotelRegisterRequest {
-
+@Builder
+public class HotelDetailOutputDto {
     private String hotelName;
 
     private String description;
@@ -29,8 +30,6 @@ public class HotelRegisterRequest {
 
     private String address;
 
-    private String cityId;
-
     private String latitude;
 
     private String longitude;
@@ -41,7 +40,7 @@ public class HotelRegisterRequest {
 
     private String isPaymentCard;
 
-    private String ownerId;
+    private List<FeedBackOutputDto> feedBack;
 
-    private List<HotelPropertiesRequest> hotelProperties;
+    private List<HotelPropertiesOutputDto> hotelProperties;
 }

@@ -4,32 +4,44 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class HotelRegisterInputDto {
 
-    private String title;
+    private String hotelName;
 
-    private String address;
-
-    private String street;
-
-    private String province;
-
-    private String district;
-
-    private String city;
-
-    private String latitude;
-
-    private String longitude;
+    private String description;
 
     private String phone;
 
     private String image;
 
-    private String description;
+    private String image1;
 
-    private int ownerId;
+    private String image2;
+
+    private String image3;
+
+    private String image4;
+
+    private String address;
+
+    private String cityId;
+
+    private String latitude;
+
+    private String longitude;
+
+    private String checkInTime;
+
+    private String checkOutTime;
+
+    private String isPaymentCard;
+
+    private String ownerId;
+
+    private List<HotelPropertiesInputDto> hotelProperties;
 }

@@ -23,6 +23,9 @@ public class HotelProperties {
     @Column(name = "PropertiesTypeId")
     private int propertiesTypeId;
 
+    @Column(name = "HotelId")
+    private int hotelId;
+
     @Column(name = "CreateTime")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;

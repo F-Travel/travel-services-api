@@ -10,12 +10,12 @@ import javax.persistence.Column;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetListHotelResponse {
+public class HotelGetListResponse {
     @JsonProperty("id")
     private int id;
 
     @JsonProperty("title")
-    private String title;
+    private String hotelName;
 
     @JsonProperty("address")
     private String address;
@@ -26,6 +26,9 @@ public class GetListHotelResponse {
     @Column(name = "Phone")
     private String phone;
 
-    @JsonProperty("status_hotel")
-    private String statusHotel;
+    @JsonProperty("description")
+    private String description;
+
+    @JsonProperty("start_point")
+    private String startPoint;
 }

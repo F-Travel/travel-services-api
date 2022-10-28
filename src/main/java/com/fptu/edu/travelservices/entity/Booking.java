@@ -18,10 +18,12 @@ public class Booking {
     private Integer id;
 
     @Column(name = "CheckIn")
-    private String checkIn;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date checkIn;
 
     @Column(name = "CheckOut")
-    private String checkOut;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date checkOut;
 
     @Column(name = "DateBooking")
     private String DateBooking;

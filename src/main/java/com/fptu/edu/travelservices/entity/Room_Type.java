@@ -11,15 +11,15 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Room")
-public class Room {
+@Table(name = "Room_Type")
+public class Room_Type {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "TypeRoomNm")
-    private String typeRoomNm;
+    @Column(name = "TypeRoomName")
+    private String typeRoomName;
 
     @Column(name = "Area")
     private String area;
