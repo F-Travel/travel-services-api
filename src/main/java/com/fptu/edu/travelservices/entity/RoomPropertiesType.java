@@ -10,21 +10,12 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Feedback")
-public class Feedback {
+@Table(name = "RoomPropertiesType")
+public class RoomPropertiesType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "StarPoint")
-    private Integer starPoint;
-
-    @Column(name = "Comment")
-    private String comment;
-
-    @Column(name = "UserId")
-    private long userId ;
-
-    @Column(name = "HotelId")
-    private Integer hotelId;
+    @Column(name = "PropertiesTypeName")
+    private String propertiesTypeName;
 }

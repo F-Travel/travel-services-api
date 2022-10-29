@@ -1,11 +1,11 @@
 package com.fptu.edu.travelservices.controller;
+
 import com.fptu.edu.travelservices.controller.request.HotelRegisterRequest;
-import com.fptu.edu.travelservices.controller.response.HotelDetailResponse;
-import com.fptu.edu.travelservices.controller.response.HotelGetListResponse;
+import com.fptu.edu.travelservices.controller.response.hotel.HotelDetailResponse;
+import com.fptu.edu.travelservices.controller.response.hotel.HotelGetListResponse;
 import com.fptu.edu.travelservices.dto.in.HotelRegisterInputDto;
-import com.fptu.edu.travelservices.dto.out.GetListHotelOutputDto;
-import com.fptu.edu.travelservices.dto.out.HotelDetailOutputDto;
-import com.fptu.edu.travelservices.entity.Hotel;
+import com.fptu.edu.travelservices.dto.out.hotel.HotelGetListOutputDto;
+import com.fptu.edu.travelservices.dto.out.hotel.HotelDetailOutputDto;
 import com.fptu.edu.travelservices.service.HotelService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -31,7 +31,6 @@ public class HotelController {
     @PostMapping("/hotel-register")
     public ResponseEntity<?> registerHotel(@RequestBody HotelRegisterRequest request) {
 
-        //Mapping form request register hotel
         HotelRegisterInputDto hotelRegisterInputDto = mapper.map(request, HotelRegisterInputDto.class);
 
         /*call hotel service register hotel info*/
@@ -44,10 +43,10 @@ public class HotelController {
 
     @GetMapping("/hotel-list")
     public ResponseEntity<?> getListHotel() {
-        //mapping form request register hotel
-        List<GetListHotelOutputDto> outInputDtos = hotelService.getHotels();
 
-        //mapping hotel
+        /*mapping form request register hotel*/
+        List<HotelGetListOutputDto> outInputDtos = hotelService.getHotels();
+
         Type listType = new TypeToken<List<HotelGetListResponse>>(){}.getType();
         List<HotelGetListResponse> hotelResponses = mapper.map(outInputDtos , listType);
 
@@ -60,7 +59,7 @@ public class HotelController {
     public ResponseEntity<?> searchListHotel(@Param("param") String param) {
 
         /*search list hotel*/
-        List<GetListHotelOutputDto> outputDtos = hotelService.searchHotels(param);
+        List<HotelGetListOutputDto> outputDtos = hotelService.searchHotels(param);
 
         //mapping hotel
         Type listType = new TypeToken<List<HotelGetListResponse>>(){}.getType();
@@ -75,10 +74,10 @@ public class HotelController {
     public ResponseEntity<?> getDetailHotel(@PathVariable String hotelId) {
 
         int id = Integer.parseInt(hotelId);
-        //mapping form request register hotel
+
+        /*mapping form request register hotel*/
         HotelDetailOutputDto outputDtos = hotelService.getDetailHotel(id);
 
-        //mapping hotel
         HotelDetailResponse hotelResponses = mapper.map(outputDtos, HotelDetailResponse.class);
 
         return ResponseEntity

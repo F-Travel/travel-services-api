@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "Room_Type")
-public class Room_Type {
+public class RoomType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +21,8 @@ public class Room_Type {
     @Column(name = "TypeRoomName")
     private String typeRoomName;
 
-    @Column(name = "Area")
-    private String area;
+    @Column(name = "RoomArea")
+    private int roomArea;
 
     @Column(name = "Image")
     private String Image;
@@ -43,7 +43,7 @@ public class Room_Type {
     private float price;
 
     @Column(name = "NumberPeople")
-    private String numberPeople;
+    private int numberPeople;
 
     @Column(name = "HotelId")
     private int hotelId;

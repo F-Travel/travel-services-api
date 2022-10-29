@@ -1,5 +1,7 @@
-package com.fptu.edu.travelservices.dto.out;
+package com.fptu.edu.travelservices.dto.out.hotel;
 
+import com.fptu.edu.travelservices.dto.out.FeedBackOutputDto;
+import com.fptu.edu.travelservices.dto.out.room.RoomTypeGetListOutputDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,7 +42,9 @@ public class HotelDetailOutputDto {
 
     private String isPaymentCard;
 
-    private List<FeedBackOutputDto> feedBack;
+    private List<FeedBackOutputDto> feedBacks;
 
     private List<HotelPropertiesOutputDto> hotelProperties;
+
+    private List<RoomTypeGetListOutputDto> roomTypes;
 }

@@ -1,19 +1,17 @@
 package com.fptu.edu.travelservices.service;
 
 import com.fptu.edu.travelservices.dto.in.HotelRegisterInputDto;
-import com.fptu.edu.travelservices.dto.out.GetListHotelOutputDto;
-import com.fptu.edu.travelservices.dto.out.HotelDetailOutputDto;
-import com.fptu.edu.travelservices.entity.Hotel;
+import com.fptu.edu.travelservices.dto.out.hotel.HotelGetListOutputDto;
+import com.fptu.edu.travelservices.dto.out.hotel.HotelDetailOutputDto;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface HotelService {
     int saveHotel(HotelRegisterInputDto inputDto);
 
-    List<GetListHotelOutputDto> getHotels();
+    List<HotelGetListOutputDto> getHotels();
 
-    List<GetListHotelOutputDto> searchHotels(String param);
+    List<HotelGetListOutputDto> searchHotels(String param);
 
     HotelDetailOutputDto getDetailHotel(int id);
 }

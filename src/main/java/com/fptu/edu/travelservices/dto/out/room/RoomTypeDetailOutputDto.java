@@ -1,4 +1,4 @@
-package com.fptu.edu.travelservices.dto.in;
+package com.fptu.edu.travelservices.dto.out.room;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,13 +9,14 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoomRegisterInputDto {
-
+public class RoomTypeDetailOutputDto {
     private String typeRoomName;
 
-    private String numberPeople;
+    private int roomArea;
 
-    private String roomArea;
+    private float price;
+
+    private int numberPeople;
 
     private String image;
 
@@ -27,9 +28,5 @@ public class RoomRegisterInputDto {
 
     private String image4;
 
-    private String price;
-
-    private String hotelId;
-
-    private List<RoomPropertiesInputDto> properties;
+    List<RoomTypePropertiesOutputDto> roomTypeProperties;
 }

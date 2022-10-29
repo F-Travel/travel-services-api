@@ -8,5 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoomPropertiesInputDto {
+    private String propertiesTypeId;
+
     private String propertiesName;
 }

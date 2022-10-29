@@ -1,4 +1,4 @@
-package com.fptu.edu.travelservices.dto.out;
+package com.fptu.edu.travelservices.dto.out.hotel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

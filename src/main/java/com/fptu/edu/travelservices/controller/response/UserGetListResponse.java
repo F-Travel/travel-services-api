@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetAllUserResponse {
+public class UserGetListResponse {
 
     @JsonProperty("id")
     private String id;

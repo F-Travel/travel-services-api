@@ -1,6 +1,8 @@
-package com.fptu.edu.travelservices.controller.response;
+package com.fptu.edu.travelservices.controller.response.hotel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fptu.edu.travelservices.controller.response.FeedBackResponse;
+import com.fptu.edu.travelservices.controller.response.room.RoomTypeGetListResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -54,8 +56,11 @@ public class HotelDetailResponse {
     private String isPaymentCard;
 
     @JsonProperty("feed_back")
-    private List<FeedBackResponse> feedBack;
+    private List<FeedBackResponse> feedBacks;
 
     @JsonProperty("hotel_properties")
     private List<HotelPropertiesResponse> hotelProperties;
+
+    @JsonProperty("room_types")
+    private List<RoomTypeGetListResponse> roomTypes;
 }

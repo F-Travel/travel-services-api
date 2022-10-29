@@ -24,6 +24,9 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
     @Query(value = "SELECT Max(id) as hotelId FROM hotel", nativeQuery = true)
     int getFistIdHotel();
 
+    @Query(value = "SELECT COUNT(id) as hotelId FROM hotel WHERE id = ?1", nativeQuery = true)
+    int getHotelId(int id);
+
     @Query(value = "SELECT \n" +
             "h.id as id,\n" +
             "h.hotel_name as hotelName,\n" +

@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import java.util.List;
 
 @Data
@@ -12,13 +11,13 @@ import java.util.List;
 @NoArgsConstructor
 public class RoomRegisterRequest {
 
-    private String typeRoomNm;
+    private String typeRoomName;
 
     private String price;
 
     private String numberPeople;
 
-    private String area;
+    private String roomArea;
 
     private String image;
 

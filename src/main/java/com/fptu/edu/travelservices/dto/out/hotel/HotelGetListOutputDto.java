@@ -1,4 +1,4 @@
-package com.fptu.edu.travelservices.dto.out;
+package com.fptu.edu.travelservices.dto.out.hotel;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetListHotelOutputDto {
+public class HotelGetListOutputDto {
     private int id;
 
     private String hotelName;

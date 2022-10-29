@@ -1,4 +1,4 @@
-package com.fptu.edu.travelservices.controller.response;
+package com.fptu.edu.travelservices.controller.response.room;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class HotelPropertiesResponse {
-    @JsonProperty("properties_type")
-    private String propertiesType;
-
+public class RoomTypePropertiesResponse {
     @JsonProperty("properties_name")
+    private String propertiesName;
+
+    @JsonProperty("properties_type_name")
     private String propertiesTypeName;
 }

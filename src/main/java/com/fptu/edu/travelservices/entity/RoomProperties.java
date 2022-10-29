@@ -18,11 +18,14 @@ public class RoomProperties {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "RoomId")
-    private int roomId;
-
     @Column(name = "PropertyName")
     private String propertyName;
+
+    @Column(name = "RoomTypeId")
+    private int roomTypeId;
+
+    @Column(name = "propertiesTypeId")
+    private int propertiesTypeId;
 
     @Column(name = "CreateTime")
     @Temporal(TemporalType.TIMESTAMP)
