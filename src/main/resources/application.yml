@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: String url ="jdbc:mysql://travel-service.mysql.database.azure.com:3306/{travelservices}?useSSL=true&requireSSL=false"; myDbConn = DriverManager.getConnection(url, "kienpt@travel-service", {70ltd_ptkm*888});
+    url: String url ="jdbc:mysql://travel-service.mysql.database.azure.com:3306/{travel-service}?useSSL=true&requireSSL=false"; myDbConn = DriverManager.getConnection(url, "kienpt@travel-service", {70ltd_ptkm*888});
     username: kienpt
     password: 70ltd_ptkm*888
   jpa:
