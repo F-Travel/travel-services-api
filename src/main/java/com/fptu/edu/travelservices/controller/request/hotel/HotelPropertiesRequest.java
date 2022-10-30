@@ -1,4 +1,4 @@
-package com.fptu.edu.travelservices.controller.request;
+package com.fptu.edu.travelservices.controller.request.hotel;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
