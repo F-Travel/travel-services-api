@@ -1,6 +1,6 @@
 package com.fptu.edu.travelservices.service;
 
-import com.fptu.edu.travelservices.dto.in.HotelRegisterInputDto;
+import com.fptu.edu.travelservices.dto.in.hotel.HotelRegisterInputDto;
 import com.fptu.edu.travelservices.dto.out.hotel.HotelGetListOutputDto;
 import com.fptu.edu.travelservices.dto.out.hotel.HotelDetailOutputDto;
 

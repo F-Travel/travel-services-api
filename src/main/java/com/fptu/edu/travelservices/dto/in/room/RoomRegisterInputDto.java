@@ -1,4 +1,4 @@
-package com.fptu.edu.travelservices.dto.in;
+package com.fptu.edu.travelservices.dto.in.room;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

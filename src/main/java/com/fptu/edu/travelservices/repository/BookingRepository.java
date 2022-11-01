@@ -1,0 +1,44 @@
+package com.fptu.edu.travelservices.repository;
+
+import com.fptu.edu.travelservices.dto.result.BookingList;
+import com.fptu.edu.travelservices.entity.Booking;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import javax.transaction.Transactional;
+import java.util.List;
+
+@Repository
+@Transactional
+public interface BookingRepository extends JpaRepository<Booking, Integer> {
+    @Query(value = "SELECT Max(id) as bookingId FROM booking", nativeQuery = true)
+    int getFistIdBooking();
+
+    @Query(value = "SELECT\n" +
+            "rt.type_room_name as roomName,\n" +
+            "DATE_FORMAT(b.check_in, '%d/%m/%Y') as checkIn,\n" +
+            "DATE_FORMAT(b.check_out, '%d/%m/%Y') as checkOut,\n" +
+            "b.user_booking as userBooking,\n" +
+            "b.email as email,\n" +
+            "CONVERT(b.phone, CHAR(11)) as phone,\n" +
+            "b.total_price as totalPrice,\n" +
+            "DATE_FORMAT(b.create_time, '%d/%m/%Y') as dateBooking,\n" +
+            "b.booking_status as bookingStatus\n" +
+            "FROM booking as b\n" +
+            "INNER JOIN booking_room as br\n" +
+            "ON b.id = br.booking_id\n" +
+            "INNER JOIN room_type as rt\n" +
+            "ON br.room_id = rt.id\n" +
+            "WHERE b.booking_status = 'booking waiting approve'\n" +
+            "and rt.id = ?1", nativeQuery = true)
+    List<BookingList> getListBooking(int roomId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE booking\n" +
+            "SET booking_status = ?1\n" +
+            "WHERE id = ?2", nativeQuery = true)
+    void updateStatusBooking(String bookingStatus, int id);
+}

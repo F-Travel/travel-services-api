@@ -3,7 +3,7 @@ package com.fptu.edu.travelservices.controller;
 import com.fptu.edu.travelservices.controller.request.hotel.HotelRegisterRequest;
 import com.fptu.edu.travelservices.controller.response.hotel.HotelDetailResponse;
 import com.fptu.edu.travelservices.controller.response.hotel.HotelGetListResponse;
-import com.fptu.edu.travelservices.dto.in.HotelRegisterInputDto;
+import com.fptu.edu.travelservices.dto.in.hotel.HotelRegisterInputDto;
 import com.fptu.edu.travelservices.dto.out.hotel.HotelGetListOutputDto;
 import com.fptu.edu.travelservices.dto.out.hotel.HotelDetailOutputDto;
 import com.fptu.edu.travelservices.service.HotelService;

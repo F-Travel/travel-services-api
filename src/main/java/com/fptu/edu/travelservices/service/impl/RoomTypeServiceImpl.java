@@ -1,10 +1,10 @@
 package com.fptu.edu.travelservices.service.impl;
 
 import com.fptu.edu.travelservices.common.DateCommon;
-import com.fptu.edu.travelservices.dto.RoomPropertiesList;
-import com.fptu.edu.travelservices.dto.RoomTypeList;
-import com.fptu.edu.travelservices.dto.in.RoomPropertiesInputDto;
-import com.fptu.edu.travelservices.dto.in.RoomRegisterInputDto;
+import com.fptu.edu.travelservices.dto.result.RoomPropertiesList;
+import com.fptu.edu.travelservices.dto.result.RoomTypeList;
+import com.fptu.edu.travelservices.dto.in.room.RoomPropertiesInputDto;
+import com.fptu.edu.travelservices.dto.in.room.RoomRegisterInputDto;
 import com.fptu.edu.travelservices.dto.out.room.RoomTypeDetailOutputDto;
 import com.fptu.edu.travelservices.dto.out.room.RoomTypeGetListOutputDto;
 import com.fptu.edu.travelservices.dto.out.room.RoomTypePropertiesOutputDto;
@@ -13,7 +13,6 @@ import com.fptu.edu.travelservices.entity.RoomProperties;
 import com.fptu.edu.travelservices.repository.RoomPropertiesRepository;
 import com.fptu.edu.travelservices.repository.RoomTypeRepository;
 import com.fptu.edu.travelservices.service.RoomTypeService;
-import jdk.nashorn.internal.runtime.options.Option;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;

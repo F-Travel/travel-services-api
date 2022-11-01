@@ -25,23 +25,29 @@ public class Booking {
     @Temporal(TemporalType.TIMESTAMP)
     private Date checkOut;
 
-    @Column(name = "DateBooking")
-    private String DateBooking;
+    @Column(name = "TotalPrice")
+    private float totalPrice;
+
+    @Column(name = "userBooking")
+    private String userBooking;
+
+    @Column(name = "Email")
+    private String email;
+
+    @Column(name = "Phone")
+    private int phone;
 
     @Column(name = "DateApproved")
     private String dateApproved;
 
-    @Column(name = "RequestStatus")
-    private Integer requestStatus;
+    @Column(name = "BookingStatus")
+    private String bookingStatus;
 
     @Column(name = "UserId")
     private Integer userId;
 
     @Column(name = "OwnerId")
     private Integer ownerId;
-
-    @Column(name = "RoomId")
-    private Integer roomId;
 
     @Column(name = "CreateTime")
     @Temporal(TemporalType.TIMESTAMP)
