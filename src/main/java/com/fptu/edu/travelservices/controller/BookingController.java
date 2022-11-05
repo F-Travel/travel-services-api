@@ -11,14 +11,16 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.lang.reflect.Type;
 import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/booking")
 public class BookingController {
 
     @Autowired
@@ -31,6 +33,7 @@ public class BookingController {
     private EmailSenderService senderService;
 
     @PostMapping("/booking/add-new")
+    @PreAuthorize("hasRole('MODERATOR')")
     public ResponseEntity<?> createRequestBooking(@RequestBody BookingRoomRequest request) {
 
         BookingRoomInputDto bookingRoomInputDto = mapper.map(request, BookingRoomInputDto.class);
@@ -43,7 +46,8 @@ public class BookingController {
                 .body(bookingId);
     }
 
-    @GetMapping("/booking/list-request/{roomId}")
+    @GetMapping("/list-request/{roomId}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public ResponseEntity<?> getListRequestBooking(@PathVariable String roomId) {
 
         int id = Integer.parseInt(roomId);
@@ -59,14 +63,15 @@ public class BookingController {
                 .body(bookingResponses);
     }
 
-    @PutMapping("/booking/approve/{bookingId}")
+    @PutMapping("/approve/{bookingId}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<?> approveBooking(@PathVariable String bookingId) {
 
         int id = Integer.parseInt(bookingId);
 
         bookingService.approveBooking(id);
 
-        senderService.sendSimpleEmail("nguyentanhuy2711@gmail.com",
+        senderService.sendSimpleEmail("kienptde140295@fpt.edu.vn",
                 "tessaaa",
                 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
@@ -74,6 +79,7 @@ public class BookingController {
     }
 
     @PutMapping("/booking/reject/{bookingId}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<?> rejectBooking(@PathVariable String bookingId) {
 
         int id = Integer.parseInt(bookingId);

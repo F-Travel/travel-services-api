@@ -9,11 +9,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api/room")
 public class RoomController {
     @Autowired
     private ModelMapper mapper;
@@ -21,7 +22,8 @@ public class RoomController {
     @Autowired
     private RoomTypeService roomService;
 
-    @PostMapping("/room-register")
+    @PostMapping("/register")
+    @PreAuthorize("hasRole('MODERATOR')")
     public ResponseEntity<?> registerRoom(@RequestBody RoomRegisterRequest request) {
 
         /*mapping form request register hotel*/
@@ -34,7 +36,8 @@ public class RoomController {
                 .body(roomId);
     }
 
-    @GetMapping("/room-detail/{roomId}")
+    @GetMapping("/detail/{roomId}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public ResponseEntity<?> getRoomTypeDetail(@PathVariable String roomId) {
 
         int roomTypeId = Integer.parseInt(roomId);

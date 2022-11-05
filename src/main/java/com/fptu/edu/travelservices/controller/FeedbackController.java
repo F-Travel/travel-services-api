@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -20,6 +21,7 @@ public class FeedbackController {
     private FeedbackService feedbackService;
 
     @PostMapping("/feedback")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> addFeedbackByUser(@RequestBody FeedbackRequest request) {
 
         /*mapping form request register hotel*/

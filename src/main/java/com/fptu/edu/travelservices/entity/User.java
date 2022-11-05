@@ -22,7 +22,7 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "FullName")
     private String fullName;
@@ -39,16 +39,13 @@ public class User {
     private String email;
 
     @NotBlank
-    @Size(max = 20, min = 6)
+    @Size(max = 120)
     @Column(name = "Password")
     private String password;
 
-    @NotBlank
     @Column(name = "Phone")
-
-    @NotBlank
-    @Size(max = 11)
     private String phone;
+
     @Column(name = "Address")
     private String address;
 
@@ -60,4 +57,10 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 }
