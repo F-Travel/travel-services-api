@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://travel-service.mysql.database.azure.com:3306/travelservice?verifyServerCertificate=false&useSSL=TRUE;
+    url: jdbc:mysql://travel-service.mysql.database.azure.com:3306/travelservice?verifyServerCertificate=false&useSSL=TRUE
     username: kienpt@travel-service
     password: 70ltd_ptkm*888
   jpa:
