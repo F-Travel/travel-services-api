@@ -1,13 +1,13 @@
-#spring:
-#  datasource:
-#    url: jdbc:mysql://travel-service.mysql.database.azure.com:3306/travelservice?verifyServerCertificate=false&useSSL=true";
-#    username: kienpt@travel-service
-#    password: 70ltd_ptkm*888
-#  jpa:
-#    show-sql: true
-#    hibernate:
-#      ddl-auto: update
-#      dialect : org.hibernate.dialect.MySQL5InnoDBDialect
-#
-#server:
-#  port: 9191
+spring:
+  datasource:
+    url: jdbc:mysql://travel-service.mysql.database.azure.com:3306/travelservice?verifyServerCertificate=false&useSSL=true";
+    username: kienpt@travel-service
+    password: 70ltd_ptkm*888
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      dialect : org.hibernate.dialect.MySQL5InnoDBDialect
+
+server:
+  port: 9191
