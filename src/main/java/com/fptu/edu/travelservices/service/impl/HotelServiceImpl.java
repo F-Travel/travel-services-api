@@ -1,12 +1,12 @@
 package com.fptu.edu.travelservices.service.impl;
 
 import com.fptu.edu.travelservices.common.DateCommon;
-import com.fptu.edu.travelservices.dto.FeedBack;
-import com.fptu.edu.travelservices.dto.HotelPropertiesList;
-import com.fptu.edu.travelservices.dto.HotelSearch;
-import com.fptu.edu.travelservices.dto.RoomTypeList;
-import com.fptu.edu.travelservices.dto.in.HotelPropertiesInputDto;
-import com.fptu.edu.travelservices.dto.in.HotelRegisterInputDto;
+import com.fptu.edu.travelservices.dto.result.FeedBack;
+import com.fptu.edu.travelservices.dto.result.HotelPropertiesList;
+import com.fptu.edu.travelservices.dto.result.HotelSearch;
+import com.fptu.edu.travelservices.dto.result.RoomTypeList;
+import com.fptu.edu.travelservices.dto.in.hotel.HotelPropertiesInputDto;
+import com.fptu.edu.travelservices.dto.in.hotel.HotelRegisterInputDto;
 import com.fptu.edu.travelservices.dto.out.*;
 import com.fptu.edu.travelservices.dto.out.hotel.HotelDetailOutputDto;
 import com.fptu.edu.travelservices.dto.out.hotel.HotelGetListOutputDto;

@@ -1,7 +1,6 @@
 package com.fptu.edu.travelservices.repository;
 
-import com.fptu.edu.travelservices.dto.FeedBack;
-import com.fptu.edu.travelservices.dto.HotelSearch;
+import com.fptu.edu.travelservices.dto.result.FeedBack;
 import com.fptu.edu.travelservices.entity.Feedback;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,4 +21,7 @@ public interface FeedBackRepository extends JpaRepository<Feedback, Integer> {
             "ON f.id = u.id\n" +
             "WHERE f.hotel_id = ?1", nativeQuery = true)
     List<FeedBack> getListFeedBack(int id);
+
+    @Query(value = "SELECT Max(id) as feedBackId FROM feedback", nativeQuery = true)
+    int getFirstFeedBacId();
 }

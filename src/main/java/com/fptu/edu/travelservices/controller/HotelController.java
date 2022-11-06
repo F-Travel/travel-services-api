@@ -3,7 +3,7 @@ package com.fptu.edu.travelservices.controller;
 import com.fptu.edu.travelservices.controller.request.hotel.HotelRegisterRequest;
 import com.fptu.edu.travelservices.controller.response.hotel.HotelDetailResponse;
 import com.fptu.edu.travelservices.controller.response.hotel.HotelGetListResponse;
-import com.fptu.edu.travelservices.dto.in.HotelRegisterInputDto;
+import com.fptu.edu.travelservices.dto.in.hotel.HotelRegisterInputDto;
 import com.fptu.edu.travelservices.dto.out.hotel.HotelGetListOutputDto;
 import com.fptu.edu.travelservices.dto.out.hotel.HotelDetailOutputDto;
 import com.fptu.edu.travelservices.service.HotelService;
@@ -20,7 +20,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/hotel")
 public class HotelController {
     @Autowired
     private ModelMapper mapper;
@@ -28,7 +28,7 @@ public class HotelController {
     @Autowired
     private HotelService hotelService;
 
-    @PostMapping("/hotel-register")
+    @PostMapping("/register")
     public ResponseEntity<?> registerHotel(@RequestBody HotelRegisterRequest request) {
 
         HotelRegisterInputDto hotelRegisterInputDto = mapper.map(request, HotelRegisterInputDto.class);
@@ -41,7 +41,7 @@ public class HotelController {
                 .body(hotelRegister);
     }
 
-    @GetMapping("/hotel-list")
+    @GetMapping("/list")
     public ResponseEntity<?> getListHotel() {
 
         /*mapping form request register hotel*/
@@ -55,7 +55,7 @@ public class HotelController {
                 .body(hotelResponses);
     }
 
-    @GetMapping("/hotel-search")
+    @GetMapping("/search")
     public ResponseEntity<?> searchListHotel(@Param("param") String param) {
 
         /*search list hotel*/
@@ -70,7 +70,7 @@ public class HotelController {
                 .body(hotelResponses);
     }
 
-    @GetMapping("/hotel-detail/{hotelId}")
+    @GetMapping("/detail/{hotelId}")
     public ResponseEntity<?> getDetailHotel(@PathVariable String hotelId) {
 
         int id = Integer.parseInt(hotelId);

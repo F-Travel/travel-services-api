@@ -1,6 +1,6 @@
 package com.fptu.edu.travelservices.repository;
 
-import com.fptu.edu.travelservices.dto.RoomTypeList;
+import com.fptu.edu.travelservices.dto.result.RoomTypeList;
 import com.fptu.edu.travelservices.entity.RoomType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

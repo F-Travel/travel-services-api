@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,8 +19,8 @@ public class BookingRoomRequest {
     @JsonProperty(value = "total_price")
     private String totalPrice;
 
-    @JsonProperty(value = "full_name")
-    private String full_name;
+    @JsonProperty(value = "user_booking")
+    private String userBooking;
 
     @JsonProperty(value = "email")
     private String email;
@@ -33,6 +31,9 @@ public class BookingRoomRequest {
     @JsonProperty(value = "user_id")
     private String userId;
 
+    @JsonProperty(value = "owner_id")
+    private String ownerId;
+
     @JsonProperty(value = "room_type_id")
-    private List[] roomTypeId;
+    private String[] roomTypeId;
 }

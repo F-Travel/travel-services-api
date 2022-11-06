@@ -1,4 +1,4 @@
-package com.fptu.edu.travelservices.dto;
+package com.fptu.edu.travelservices.dto.result;
 
 public interface RoomTypeList {
     Integer getRoomTypeId();

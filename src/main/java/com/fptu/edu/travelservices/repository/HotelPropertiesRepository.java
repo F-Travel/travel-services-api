@@ -1,6 +1,6 @@
 package com.fptu.edu.travelservices.repository;
 
-import com.fptu.edu.travelservices.dto.HotelPropertiesList;
+import com.fptu.edu.travelservices.dto.result.HotelPropertiesList;
 import com.fptu.edu.travelservices.entity.HotelProperties;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
