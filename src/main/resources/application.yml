@@ -8,6 +8,17 @@ spring:
     hibernate:
       ddl-auto: update
       dialect : org.hibernate.dialect.MySQL5InnoDBDialect
-
+  mail:
+      host: smtp.gmail.com
+      port: 587
+      username: kienpt375@gmail.com
+      password: ctypmityywseoaol
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true
+              required: true
 server:
   port: 9191
