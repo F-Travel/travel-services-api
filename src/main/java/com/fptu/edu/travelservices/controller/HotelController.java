@@ -55,7 +55,7 @@ public class HotelController {
                 .body(hotelResponses);
     }
 
-    @GetMapping("/search")
+    @PostMapping("/search")
     public ResponseEntity<?> searchListHotel(@Param("param") String param) {
 
         /*search list hotel*/
@@ -84,4 +84,30 @@ public class HotelController {
                 .status(HttpStatus.OK)
                 .body(hotelResponses);
     }
+
+    @PutMapping("/update/{hotelId}")
+    public ResponseEntity<?> updateHotel(@PathVariable String hotelId,
+                                         @RequestBody HotelRegisterRequest request) {
+        //To do
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(null);
+    }
+
+    @DeleteMapping("/delete/{hotelId}")
+    public ResponseEntity<?> deleteHotel(@PathVariable String hotelId) {
+        //To do
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(null);
+    }
+
+    @PutMapping("/approve/{hotelId}")
+    public ResponseEntity<?> approveHotel(@PathVariable String hotelId) {
+        //To do
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(null);
+    }
+
 }

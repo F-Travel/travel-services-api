@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,13 +25,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "FullName")
-    private String fullName;
-
     @NotBlank
     @Size(max = 20)
     @Column(name = "UserName")
     private String username;
+
+    @Column(name = "FullName")
+    private String fullName;
 
     @NotBlank
     @Size(max = 50)
@@ -51,6 +52,13 @@ public class User {
 
     @Column(name = "Avatar")
     private String avatar;
+
+    @Column(name = "Birthday")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date birthday;
+
+    @Column(name = "UserStatus")
+    private String userStatus;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",

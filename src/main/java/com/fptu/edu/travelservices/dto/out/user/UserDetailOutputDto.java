@@ -1,4 +1,4 @@
-package com.fptu.edu.travelservices.dto.out;
+package com.fptu.edu.travelservices.dto.out.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,13 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserOutputDto {
+public class UserDetailOutputDto {
 
     private String id;
 
-    private String firstName;
-
-    private String lastName;
+    private String fullName;
 
     private String email;
 
@@ -21,5 +19,7 @@ public class UserOutputDto {
 
     private String address;
 
-    private String interests;
+    private String birthday;
+
+    private String avatar;
 }

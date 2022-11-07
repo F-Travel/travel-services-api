@@ -32,7 +32,7 @@ public class BookingController {
     @Autowired
     private EmailSenderService senderService;
 
-    @PostMapping("/booking/add-new")
+    @PostMapping("/add-new")
     @PreAuthorize("hasRole('MODERATOR')")
     public ResponseEntity<?> createRequestBooking(@RequestBody BookingRoomRequest request) {
 

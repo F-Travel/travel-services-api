@@ -1,4 +1,4 @@
-package com.fptu.edu.travelservices.controller.response;
+package com.fptu.edu.travelservices.controller.response.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -13,11 +13,11 @@ public class UserGetListResponse {
     @JsonProperty("id")
     private String id;
 
-    @JsonProperty("first_name")
-    private String firstName;
+    @JsonProperty("user_name")
+    private String username;
 
-    @JsonProperty("last_name")
-    private String lastName;
+    @JsonProperty("full_name")
+    private String fullName;
 
     @JsonProperty("email")
     private String email;
@@ -28,6 +28,12 @@ public class UserGetListResponse {
     @JsonProperty("address")
     private String address;
 
-    @JsonProperty("interests")
-    private String interests;
+    @JsonProperty("avatar")
+    private String avatar;
+
+    @JsonProperty("birthday")
+    private String birthday;
+
+    @JsonProperty("user_status")
+    private String userStatus;
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/feedback")
 public class FeedbackController {
     @Autowired
     private ModelMapper mapper;
@@ -20,7 +20,7 @@ public class FeedbackController {
     @Autowired
     private FeedbackService feedbackService;
 
-    @PostMapping("/feedback")
+    @PostMapping("/add-new")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> addFeedbackByUser(@RequestBody FeedbackRequest request) {
 
@@ -30,6 +30,30 @@ public class FeedbackController {
         /*insert feedback by user*/
         feedbackService.saveFeedBack(feedbackInputDto);
 
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/delete/{feedbackId}")
+    public ResponseEntity<?> deleteFeedback(@PathVariable String hotelId) {
+        //To do
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
+    }
+
+    @PutMapping("/delete/{feedbackId}")
+    public ResponseEntity<?> reportFeedback(@PathVariable String hotelId) {
+        //To do
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/list-report")
+    public ResponseEntity<?> getListReportFeedback(@PathVariable String hotelId) {
+        //To do
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/cancel-report/{feedbackId}")
+    public ResponseEntity<?> cancelReportFeedback(@PathVariable String hotelId) {
+        //To do
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 }

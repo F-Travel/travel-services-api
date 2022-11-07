@@ -1,7 +1,7 @@
 package com.fptu.edu.travelservices.controller.response.hotel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fptu.edu.travelservices.controller.response.FeedBackResponse;
+import com.fptu.edu.travelservices.controller.response.feedback.FeedBackResponse;
 import com.fptu.edu.travelservices.controller.response.room.RoomTypeGetListResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
