@@ -1,6 +1,6 @@
 package com.fptu.edu.travelservices.dto.out.hotel;
 
-import com.fptu.edu.travelservices.dto.out.FeedBackOutputDto;
+import com.fptu.edu.travelservices.dto.out.feedback.FeedBackOutputDto;
 import com.fptu.edu.travelservices.dto.out.room.RoomTypeGetListOutputDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

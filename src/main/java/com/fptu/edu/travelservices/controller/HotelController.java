@@ -55,13 +55,13 @@ public class HotelController {
                 .body(hotelResponses);
     }
 
-    @GetMapping("/search")
+    @PostMapping("/search")
     public ResponseEntity<?> searchListHotel(@Param("param") String param) {
 
         /*search list hotel*/
         List<HotelGetListOutputDto> outputDtos = hotelService.searchHotels(param);
 
-        //mapping hotel
+        /*mapping hotel*/
         Type listType = new TypeToken<List<HotelGetListResponse>>(){}.getType();
         List<HotelGetListResponse> hotelResponses = mapper.map(outputDtos , listType);
 
@@ -84,4 +84,35 @@ public class HotelController {
                 .status(HttpStatus.OK)
                 .body(hotelResponses);
     }
+
+    @PutMapping("/update/{hotelId}")
+    public ResponseEntity<?> updateHotel(@PathVariable String hotelId,
+                                         @RequestBody HotelRegisterRequest request) {
+        //To do
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(null);
+    }
+
+    @DeleteMapping("/delete/{hotelId}")
+    public ResponseEntity<?> deleteHotel(@PathVariable String hotelId) {
+
+        int id = Integer.parseInt(hotelId);
+
+        /*delete hotel*/
+        hotelService.deleteHotel(id);
+
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PutMapping("/approve/{hotelId}")
+    public ResponseEntity<?> approveHotel(@PathVariable String hotelId) {
+
+        int id = Integer.parseInt(hotelId);
+
+        /*approved hotel*/
+        hotelService.approveHotel(id);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
 }

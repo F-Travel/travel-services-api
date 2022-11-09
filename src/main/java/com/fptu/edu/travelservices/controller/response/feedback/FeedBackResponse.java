@@ -1,4 +1,4 @@
-package com.fptu.edu.travelservices.controller.response;
+package com.fptu.edu.travelservices.controller.response.feedback;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

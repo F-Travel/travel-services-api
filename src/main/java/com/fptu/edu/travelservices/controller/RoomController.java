@@ -51,4 +51,23 @@ public class RoomController {
                 .status(HttpStatus.OK)
                 .body(roomTypeDetailResponse);
     }
+
+    @PutMapping("/update/{roomId}")
+    @PreAuthorize("hasRole('MODERATOR')")
+    public ResponseEntity<?> updateRoomType(@PathVariable String roomId,
+                                            @RequestBody RoomRegisterRequest request) {
+        //To do
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(null);
+    }
+
+    @DeleteMapping("/delete/{roomId}")
+    @PreAuthorize("hasRole('MODERATOR')")
+    public ResponseEntity<?> deleteRoomType(@PathVariable String roomId) {
+        //To do
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(null);
+    }
 }

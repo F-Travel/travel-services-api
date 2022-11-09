@@ -1,17 +1,18 @@
 package com.fptu.edu.travelservices.controller;
 
-import com.fptu.edu.travelservices.controller.response.UserGetListResponse;
-import com.fptu.edu.travelservices.dto.out.UserOutputDto;
+import com.fptu.edu.travelservices.controller.request.user.UserUpdateRequest;
+import com.fptu.edu.travelservices.controller.response.user.UserDetailResponse;
+import com.fptu.edu.travelservices.controller.response.user.UserGetListResponse;
+import com.fptu.edu.travelservices.dto.in.user.UserUpdateInputDto;
+import com.fptu.edu.travelservices.dto.out.user.UserDetailOutputDto;
+import com.fptu.edu.travelservices.dto.out.user.UserOutputDto;
 import com.fptu.edu.travelservices.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -27,15 +28,55 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<UserGetListResponse>> getAllUser(){
-        //get all list user
+    public ResponseEntity<?> getAllUser(){
+        /*get all list user activate*/
         List<UserOutputDto> outputDto = userService.getAllUsers();
 
-        //mapper
+        /*mapping data*/
         Type listType = new TypeToken<List<UserGetListResponse>>(){}.getType();
         List<UserGetListResponse> userResponses = mapper.map(outputDto , listType);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(userResponses);
+    }
+
+    @GetMapping("/detail/{userId}")
+    public ResponseEntity<?> getUserInfoById(@PathVariable String userId) {
+
+        Long id = Long.parseLong(userId);
+
+        /*mapping form request register hotel*/
+        UserDetailOutputDto outputDto = userService.getUserById(id);
+
+        UserDetailResponse userDetailResponse = mapper.map(outputDto, UserDetailResponse.class);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(userDetailResponse);
+    }
+
+    @PutMapping("/update/{userId}")
+    public ResponseEntity<?> updateUserById(@PathVariable String userId,
+                                            @RequestBody UserUpdateRequest request) {
+
+        Long id = Long.parseLong(userId);
+
+        /*mapping data*/
+        UserUpdateInputDto inputDto= mapper.map(request, UserUpdateInputDto.class);
+
+        /*update user info*/
+        userService.updateUser(inputDto, id);
+
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{userId}")
+    public ResponseEntity<?> deleteUserById(@PathVariable String userId) {
+        Long id = Long.parseLong(userId);
+
+        /*lock account user*/
+        userService.deleteUser(id);
+
+        return new ResponseEntity<Void>(HttpStatus.OK);
     }
 }

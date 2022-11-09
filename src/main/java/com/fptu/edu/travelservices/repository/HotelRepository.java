@@ -43,4 +43,11 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
             "against (?1)\n" +
             "GROUP BY h.id", nativeQuery = true)
     List<HotelSearch> searchHotel(String param);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE hotel\n" +
+            "SET status_hotel = ?1\n" +
+            "WHERE id = ?2", nativeQuery = true)
+    void updateStatusHotel(String hotelStatus, long id);
 }

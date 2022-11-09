@@ -1,13 +1,13 @@
 package com.fptu.edu.travelservices.service.impl;
 
 import com.fptu.edu.travelservices.common.DateCommon;
+import com.fptu.edu.travelservices.dto.out.feedback.FeedBackOutputDto;
 import com.fptu.edu.travelservices.dto.result.FeedBack;
 import com.fptu.edu.travelservices.dto.result.HotelPropertiesList;
 import com.fptu.edu.travelservices.dto.result.HotelSearch;
 import com.fptu.edu.travelservices.dto.result.RoomTypeList;
 import com.fptu.edu.travelservices.dto.in.hotel.HotelPropertiesInputDto;
 import com.fptu.edu.travelservices.dto.in.hotel.HotelRegisterInputDto;
-import com.fptu.edu.travelservices.dto.out.*;
 import com.fptu.edu.travelservices.dto.out.hotel.HotelDetailOutputDto;
 import com.fptu.edu.travelservices.dto.out.hotel.HotelGetListOutputDto;
 import com.fptu.edu.travelservices.dto.out.hotel.HotelPropertiesOutputDto;
@@ -35,6 +35,12 @@ public class HotelServiceImpl implements HotelService {
 
     /*status hotel when begin register*/
     public static final String HOTEL_WAITING_APPROVE = "Waiting Approve";
+
+    /*status hotel censored hotel*/
+    public static final String CENSORED_HOTEL = "Censored Hotel";
+
+    /*status hotel censored hotel*/
+    public static final String DELETED_HOTEL = "deleted Hotel";
 
     @Autowired
     private HotelRepository hotelRepository;
@@ -164,6 +170,18 @@ public class HotelServiceImpl implements HotelService {
         outputDto.setRoomTypes(roomTypeOutputDtos);
 
         return outputDto;
+    }
+
+    @Override
+    public void deleteHotel(int id) {
+        /*update status deleted hotel*/
+        hotelRepository.updateStatusHotel(DELETED_HOTEL, id);
+    }
+
+    @Override
+    public void approveHotel(int id) {
+        /*update status censored hotel*/
+        hotelRepository.updateStatusHotel(CENSORED_HOTEL, id);
     }
 
     private void saveHotelProperties(final List<HotelPropertiesInputDto> hotelPropertiesInputDtos, final int hotelId){
