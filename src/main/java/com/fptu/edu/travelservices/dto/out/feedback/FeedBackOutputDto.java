@@ -1,4 +1,4 @@
-package com.fptu.edu.travelservices.dto.out;
+package com.fptu.edu.travelservices.dto.out.feedback;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

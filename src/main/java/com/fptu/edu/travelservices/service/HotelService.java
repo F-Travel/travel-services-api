@@ -14,4 +14,8 @@ public interface HotelService {
     List<HotelGetListOutputDto> searchHotels(String param);
 
     HotelDetailOutputDto getDetailHotel(int id);
+
+    void deleteHotel(int id);
+
+    void approveHotel(int id);
 }

@@ -27,4 +27,7 @@ public class Feedback {
 
     @Column(name = "HotelId")
     private Integer hotelId;
+
+    @Column(name = "StatusFeedback")
+    private String statusFeedback;
 }

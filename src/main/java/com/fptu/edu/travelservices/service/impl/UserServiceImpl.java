@@ -9,14 +9,11 @@ import com.fptu.edu.travelservices.exception.ResourceNotFoundException;
 import com.fptu.edu.travelservices.repository.UserRepository;
 import com.fptu.edu.travelservices.service.UserService;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
