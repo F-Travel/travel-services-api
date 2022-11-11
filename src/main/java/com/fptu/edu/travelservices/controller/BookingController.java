@@ -33,7 +33,7 @@ public class BookingController {
     private EmailSenderService senderService;
 
     @PostMapping("/add-new")
-    @PreAuthorize("hasRole('MODERATOR')")
+    /*@PreAuthorize("hasRole('MODERATOR')")*/
     public ResponseEntity<?> createRequestBooking(@RequestBody BookingRoomRequest request) {
 
         BookingRoomInputDto bookingRoomInputDto = mapper.map(request, BookingRoomInputDto.class);
@@ -47,7 +47,7 @@ public class BookingController {
     }
 
     @GetMapping("/list-request/{roomId}")
-    @PreAuthorize("hasRole('MODERATOR')")
+    /*@PreAuthorize("hasRole('MODERATOR')")*/
     public ResponseEntity<?> getListRequestBooking(@PathVariable String roomId) {
 
         int id = Integer.parseInt(roomId);
@@ -64,7 +64,7 @@ public class BookingController {
     }
 
     @PutMapping("/approve/{bookingId}")
-    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    /*@PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")*/
     public ResponseEntity<?> approveBooking(@PathVariable String bookingId) {
 
         int id = Integer.parseInt(bookingId);
@@ -79,7 +79,7 @@ public class BookingController {
     }
 
     @PutMapping("/booking/reject/{bookingId}")
-    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    /*@PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")*/
     public ResponseEntity<?> rejectBooking(@PathVariable String bookingId) {
 
         int id = Integer.parseInt(bookingId);
