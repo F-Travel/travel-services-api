@@ -36,10 +36,10 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
             "h.phone as phone,\n" +
             "AVG(f.star_point) as startPoint,\n" +
             "ROUND(AVG(rt.price),3) as price\n" +
-            "FROM travelservices.hotel as h\n" +
-            "left Join travelservices.feedback as f\n" +
+            "FROM hotel as h\n" +
+            "left Join feedback as f\n" +
             "ON h.id = f.hotel_id\n" +
-            "left Join travelservices.room_type as rt\n" +
+            "left Join room_type as rt\n" +
             "ON h.id = rt.hotel_id\n" +
             "where\n" +
             "match (h.address, h.hotel_name, h.description)\n" +
