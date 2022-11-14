@@ -23,7 +23,7 @@ public class HotelGetListResponse {
     @JsonProperty("image")
     private String image;
 
-    @Column(name = "Phone")
+    @Column(name = "phone")
     private String phone;
 
     @JsonProperty("description")
@@ -31,4 +31,7 @@ public class HotelGetListResponse {
 
     @JsonProperty("start_point")
     private String startPoint;
+
+    @JsonProperty("price")
+    private String price;
 }

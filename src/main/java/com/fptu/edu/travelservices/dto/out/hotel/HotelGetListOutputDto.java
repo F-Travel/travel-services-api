@@ -20,5 +20,7 @@ public class HotelGetListOutputDto {
 
     private String description;
 
-    private int startPoint;
+    private String startPoint;
+
+    private String price;
 }
