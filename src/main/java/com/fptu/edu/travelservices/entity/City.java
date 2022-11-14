@@ -20,6 +20,9 @@ public class City {
     @Column(name = "CityName")
     private String cityName;
 
+    @Column(name = "Province")
+    private String province;
+
     @Column(name = "CityImage")
     private String cityImage;
 

@@ -27,17 +27,20 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
     @Query(value = "SELECT COUNT(id) as hotelId FROM hotel WHERE id = ?1", nativeQuery = true)
     int getHotelId(int id);
 
-    @Query(value = "SELECT \n" +
+    @Query(value = "SELECT\n" +
             "h.id as id,\n" +
             "h.hotel_name as hotelName,\n" +
             "h.address as address,\n" +
             "h.description as description,\n" +
             "h.image as image,\n" +
             "h.phone as phone,\n" +
-            "AVG(f.star_point) as startPoint\n" +
-            "FROM hotel as h\n" +
-            "left Join feedback as f\n" +
-            "ON h.id = f.hostel_id\n" +
+            "AVG(f.star_point) as startPoint,\n" +
+            "ROUND(AVG(rt.price),3) as price\n" +
+            "FROM travelservices.hotel as h\n" +
+            "left Join travelservices.feedback as f\n" +
+            "ON h.id = f.hotel_id\n" +
+            "left Join travelservices.room_type as rt\n" +
+            "ON h.id = rt.hotel_id\n" +
             "where\n" +
             "match (h.address, h.hotel_name, h.description)\n" +
             "against (?1)\n" +
