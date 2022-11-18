@@ -47,6 +47,25 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
             "GROUP BY h.id", nativeQuery = true)
     List<HotelSearch> searchHotel(String param);
 
+    @Query(value = "SELECT\n" +
+            "h.id as id,\n" +
+            "h.hotel_name as hotelName,\n" +
+            "h.address as address,\n" +
+            "h.description as description,\n" +
+            "h.image as image,\n" +
+            "h.phone as phone,\n" +
+            "AVG(f.star_point) as startPoint,\n" +
+            "ROUND(AVG(rt.price),3) as price\n" +
+            "FROM hotel as h\n" +
+            "left Join feedback as f\n" +
+            "ON h.id = f.hotel_id\n" +
+            "left Join room_type as rt\n" +
+            "ON h.id = rt.hotel_id\n" +
+            "where\n" +
+            "h.city_id = ?1\n" +
+            "GROUP BY h.id", nativeQuery = true)
+    List<HotelSearch> getHotelByCity(String cityId);
+
     @Transactional
     @Modifying
     @Query(value = "UPDATE hotel\n" +

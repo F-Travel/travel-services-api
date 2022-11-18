@@ -119,6 +119,20 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
+    public List<HotelGetListOutputDto> getHotelsByCity(String cityId) {
+        List<HotelSearch> hotels = hotelRepository.getHotelByCity(cityId);
+
+        if(hotels.isEmpty()){
+            new ResourceNotFoundException("");
+        }
+
+        Type listType = new TypeToken<List<HotelGetListOutputDto>>(){}.getType();
+        List<HotelGetListOutputDto> hotelOutputDtos = mapper.map(hotels , listType);
+
+        return hotelOutputDtos;
+    }
+
+    @Override
     public HotelDetailOutputDto getDetailHotel(int id) {
 
         int checkIdHotel = hotelRepository.getHotelId(id);

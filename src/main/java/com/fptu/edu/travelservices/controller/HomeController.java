@@ -40,4 +40,46 @@ public class HomeController {
                 .status(HttpStatus.OK)
                 .body(cityListResponses);
     }
+
+    @GetMapping("/top-city")
+    public ResponseEntity<?> getTopCity() {
+
+        /*get list city*/
+        List<CityGetListOutputDto> outputDtos = cityService.getListCity();
+
+        Type listType = new TypeToken<List<CityGetListResponse>>(){}.getType();
+        List<CityGetListResponse> cityListResponses = mapper.map(outputDtos , listType);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(null);
+    }
+
+    @GetMapping("/suggest-event")
+    public ResponseEntity<?> getSuggestEvent() {
+
+        /*get list city*/
+        List<CityGetListOutputDto> outputDtos = cityService.getListCity();
+
+        Type listType = new TypeToken<List<CityGetListResponse>>(){}.getType();
+        List<CityGetListResponse> cityListResponses = mapper.map(outputDtos , listType);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(null);
+    }
+
+    @GetMapping("/suggest-hotel")
+    public ResponseEntity<?> getSuggestHotel() {
+
+        /*get list city*/
+        List<CityGetListOutputDto> outputDtos = cityService.getListCity();
+
+        Type listType = new TypeToken<List<CityGetListResponse>>(){}.getType();
+        List<CityGetListResponse> cityListResponses = mapper.map(outputDtos , listType);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(null);
+    }
 }
