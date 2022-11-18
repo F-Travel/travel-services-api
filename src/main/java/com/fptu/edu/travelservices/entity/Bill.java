@@ -20,20 +20,8 @@ public class Bill {
     @Column(name = "PaymentMethod")
     private String paymentMethod;
 
-    @Column(name = "TotalAmount")
-    private float totalAmount;
-
-    @Column(name = "isBooking")
-    private String isBooking;
-
-    @Column(name = "DateBooking")
-    private String dateBooking;
-
-    @Column(name = "PaymentStatus")
-    private String paymentStatus;
-
-    @Column(name = "PaymentDate")
-    private String paymentDate;
+    @Column(name = "StatusBill")
+    private String statusBill;
 
     @Column(name = "ExternalInvoice")
     private String ExternalInvoice;
@@ -41,24 +29,18 @@ public class Bill {
     @Column(name = "ExternalTransaction")
     private String ExternalTransaction;
 
-    @Column(name = "BookingId")
-    private String BookingId;
-
     @Column(name = "UserId")
     private String UserId;
 
     @Column(name = "OwnerId")
     private String ownerId;
 
-    @Column(name = "RoomId")
-    private String roomId;
-
     @Column(name = "CreateTime")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
     @Column(name = "CreatedBy")
-    private String createdBy;
+    private String createBy;
 
     @Column(name = "UpdatedTime")
     @Temporal(TemporalType.TIMESTAMP)
