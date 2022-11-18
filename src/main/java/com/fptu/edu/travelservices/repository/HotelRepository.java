@@ -47,6 +47,7 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
             "GROUP BY h.id", nativeQuery = true)
     List<HotelSearch> searchHotel(String param);
 
+    /*test merge*/
     @Transactional
     @Modifying
     @Query(value = "UPDATE hotel\n" +
