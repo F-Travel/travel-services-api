@@ -3,24 +3,16 @@ package com.fptu.edu.travelservices.controller;
 import com.fptu.edu.travelservices.config.Helper;
 import com.fptu.edu.travelservices.config.PaymentConfig;
 import com.fptu.edu.travelservices.dto.PaymentDTO;
-import lombok.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -84,7 +76,7 @@ public class PaymentController {
         String vnp_ReturnUrl = "https://f-travel.azurewebsites.net/api/feedback/list-report";
 
 //        String vnp_TxnRef = createdOrderId.toString();
-        String vnp_TxnRef = "1225";
+        String vnp_TxnRef = "1500";
 //        String vnp_TxnRef = Helper.getRandomNumber(8);
 
         Map<String, String> params = new HashMap<>();
