@@ -20,4 +20,6 @@ public interface HotelService {
     void deleteHotel(int id);
 
     void approveHotel(int id);
+
+    List<HotelGetListOutputDto> getSuggestHotel(float latitudeIp, float longitudeIp);
 }

@@ -1,6 +1,7 @@
 package com.fptu.edu.travelservices.service.impl;
 
 import com.fptu.edu.travelservices.dto.out.home.CityGetListOutputDto;
+import com.fptu.edu.travelservices.dto.result.CityTopList;
 import com.fptu.edu.travelservices.entity.City;
 import com.fptu.edu.travelservices.repository.CityRepository;
 import com.fptu.edu.travelservices.service.CityService;
@@ -31,5 +32,16 @@ public class CityServicelmpl implements CityService {
         List<CityGetListOutputDto> cityOutputDtos = mapper.map(cities , listType);
 
         return cityOutputDtos;
+    }
+
+    @Override
+    public List<CityGetListOutputDto> getTopListCity() {
+
+        List<CityTopList> topSixCity = cityRepository.getTopListCity();
+
+        Type listType = new TypeToken<List<CityGetListOutputDto>>(){}.getType();
+        List<CityGetListOutputDto> cityTopSixCity = mapper.map(topSixCity , listType);
+
+        return cityTopSixCity;
     }
 }

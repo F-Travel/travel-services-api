@@ -40,7 +40,7 @@ public class HotelServiceImpl implements HotelService {
     public static final String CENSORED_HOTEL = "Censored Hotel";
 
     /*status hotel censored hotel*/
-    public static final String DELETED_HOTEL = "deleted Hotel";
+    public static final String DELETED_HOTEL = "Deleted Hotel";
 
     @Autowired
     private HotelRepository hotelRepository;
@@ -196,6 +196,22 @@ public class HotelServiceImpl implements HotelService {
     public void approveHotel(int id) {
         /*update status censored hotel*/
         hotelRepository.updateStatusHotel(CENSORED_HOTEL, id);
+    }
+
+    @Override
+    public List<HotelGetListOutputDto> getSuggestHotel(float latitudeIp, float longitudeIp) {
+        List<Hotel> hotels = hotelRepository.findAll();
+
+        double distance;
+
+        hotels.stream().filter(result -> distance =
+                Math.sqrt(Math.pow((latitudeIp - result.getLatitude()), 2) + Math.pow((longitudeIp - result.getLongitude()), 2)))
+                        .map(hotel -> {
+                            HotelGetListOutputDto outputDto = new HotelGetListOutputDto();
+
+                            return outputDto;
+                        }).findFirst().orElse(null);
+        return null;
     }
 
     private void saveHotelProperties(final List<HotelPropertiesInputDto> hotelPropertiesInputDtos, final int hotelId){

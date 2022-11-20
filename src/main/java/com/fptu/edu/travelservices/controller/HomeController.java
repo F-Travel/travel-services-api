@@ -1,6 +1,7 @@
 package com.fptu.edu.travelservices.controller;
 
 import com.fptu.edu.travelservices.controller.response.home.CityGetListResponse;
+import com.fptu.edu.travelservices.controller.response.home.CityTopSixResponse;
 import com.fptu.edu.travelservices.dto.out.home.CityGetListOutputDto;
 import com.fptu.edu.travelservices.service.CityService;
 import org.modelmapper.ModelMapper;
@@ -45,14 +46,14 @@ public class HomeController {
     public ResponseEntity<?> getTopCity() {
 
         /*get list city*/
-        List<CityGetListOutputDto> outputDtos = cityService.getListCity();
+        List<CityGetListOutputDto> outputDtos = cityService.getTopListCity();
 
-        Type listType = new TypeToken<List<CityGetListResponse>>(){}.getType();
-        List<CityGetListResponse> cityListResponses = mapper.map(outputDtos , listType);
+        Type listType = new TypeToken<List<CityTopSixResponse>>(){}.getType();
+        List<CityTopSixResponse> cityTopSixResponses = mapper.map(outputDtos , listType);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(null);
+                .body(cityTopSixResponses);
     }
 
     @GetMapping("/suggest-event")

@@ -23,4 +23,6 @@ public class HotelGetListOutputDto {
     private String startPoint;
 
     private String price;
+
+    private double distance;
 }
