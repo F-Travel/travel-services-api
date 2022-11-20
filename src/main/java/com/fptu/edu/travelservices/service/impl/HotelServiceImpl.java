@@ -2,6 +2,7 @@ package com.fptu.edu.travelservices.service.impl;
 
 import com.fptu.edu.travelservices.common.DateCommon;
 import com.fptu.edu.travelservices.dto.out.feedback.FeedBackOutputDto;
+import com.fptu.edu.travelservices.dto.out.hotel.HotelListOutputDto;
 import com.fptu.edu.travelservices.dto.result.FeedBack;
 import com.fptu.edu.travelservices.dto.result.HotelPropertiesList;
 import com.fptu.edu.travelservices.dto.result.HotelSearch;
@@ -40,7 +41,7 @@ public class HotelServiceImpl implements HotelService {
     public static final String CENSORED_HOTEL = "Censored Hotel";
 
     /*status hotel censored hotel*/
-    public static final String DELETED_HOTEL = "deleted Hotel";
+    public static final String DELETED_HOTEL = "Deleted Hotel";
 
     @Autowired
     private HotelRepository hotelRepository;
@@ -89,7 +90,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public List<HotelGetListOutputDto> getHotels() {
+    public List<HotelListOutputDto> getHotels() {
         /*get list hotel DB*/
         List<Hotel> hotels = hotelRepository.findAll();
 
@@ -97,8 +98,8 @@ public class HotelServiceImpl implements HotelService {
             new ResourceNotFoundException("");
         }
 
-        Type listType = new TypeToken<List<HotelGetListOutputDto>>(){}.getType();
-        List<HotelGetListOutputDto> hotelOutputDtos = mapper.map(hotels , listType);
+        Type listType = new TypeToken<List<HotelListOutputDto>>(){}.getType();
+        List<HotelListOutputDto> hotelOutputDtos = mapper.map(hotels , listType);
 
         return hotelOutputDtos;
     }
