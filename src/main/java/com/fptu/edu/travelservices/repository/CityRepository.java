@@ -28,6 +28,6 @@ public interface CityRepository extends JpaRepository<City, Integer> {
             "ON br.booking_id = b.id\n" +
             "GROUP BY id, cityImage, cityName \n" +
             "order by total desc\n" +
-            "limit 2", nativeQuery = true)
+            "limit 9", nativeQuery = true)
     List<CityTopList> getTopListCity();
 }
