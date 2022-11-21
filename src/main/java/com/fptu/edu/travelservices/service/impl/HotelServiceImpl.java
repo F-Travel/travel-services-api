@@ -205,13 +205,13 @@ public class HotelServiceImpl implements HotelService {
 
         double distance;
 
-        hotels.stream().filter(result -> distance =
-                Math.sqrt(Math.pow((latitudeIp - result.getLatitude()), 2) + Math.pow((longitudeIp - result.getLongitude()), 2)))
-                        .map(hotel -> {
-                            HotelGetListOutputDto outputDto = new HotelGetListOutputDto();
-
-                            return outputDto;
-                        }).findFirst().orElse(null);
+//        hotels.stream().filter(result -> distance =
+//                Math.sqrt(Math.pow((latitudeIp - result.getLatitude()), 2) + Math.pow((longitudeIp - result.getLongitude()), 2)))
+//                        .map(hotel -> {
+//                            HotelGetListOutputDto outputDto = new HotelGetListOutputDto();
+//
+//                            return outputDto;
+//                        }).findFirst().orElse(null);
         return null;
     }
 
