@@ -120,6 +120,20 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
+    public List<HotelGetListOutputDto> getHotelsByCity(String cityId) {
+        List<HotelSearch> hotels = hotelRepository.getHotelByCity(cityId);
+
+        if(hotels.isEmpty()){
+            new ResourceNotFoundException("");
+        }
+
+        Type listType = new TypeToken<List<HotelGetListOutputDto>>(){}.getType();
+        List<HotelGetListOutputDto> hotelOutputDtos = mapper.map(hotels , listType);
+
+        return hotelOutputDtos;
+    }
+
+    @Override
     public HotelDetailOutputDto getDetailHotel(int id) {
 
         int checkIdHotel = hotelRepository.getHotelId(id);
@@ -183,6 +197,22 @@ public class HotelServiceImpl implements HotelService {
     public void approveHotel(int id) {
         /*update status censored hotel*/
         hotelRepository.updateStatusHotel(CENSORED_HOTEL, id);
+    }
+
+    @Override
+    public List<HotelGetListOutputDto> getSuggestHotel(float latitudeIp, float longitudeIp) {
+        List<Hotel> hotels = hotelRepository.findAll();
+
+        double distance;
+
+//        hotels.stream().filter(result -> distance =
+//                Math.sqrt(Math.pow((latitudeIp - result.getLatitude()), 2) + Math.pow((longitudeIp - result.getLongitude()), 2)))
+//                        .map(hotel -> {
+//                            HotelGetListOutputDto outputDto = new HotelGetListOutputDto();
+//
+//                            return outputDto;
+//                        }).findFirst().orElse(null);
+        return null;
     }
 
     private void saveHotelProperties(final List<HotelPropertiesInputDto> hotelPropertiesInputDtos, final int hotelId){

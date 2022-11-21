@@ -117,4 +117,19 @@ public class HotelController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
+    @GetMapping("/city/{cityId}")
+    public ResponseEntity<?> getListHotelByCity(@PathVariable String cityId) {
+
+        /*search list hotel*/
+        List<HotelGetListOutputDto> outputDtos = hotelService.getHotelsByCity(cityId);
+
+        /*mapping hotel*/
+        Type listType = new TypeToken<List<HotelGetListResponse>>(){}.getType();
+        List<HotelGetListResponse> hotelResponses = mapper.map(outputDtos , listType);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(hotelResponses);
+    }
+
 }

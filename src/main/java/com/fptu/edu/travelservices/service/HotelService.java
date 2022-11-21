@@ -14,9 +14,13 @@ public interface HotelService {
 
     List<HotelGetListOutputDto> searchHotels(String param);
 
+    List<HotelGetListOutputDto> getHotelsByCity(String cityId);
+
     HotelDetailOutputDto getDetailHotel(int id);
 
     void deleteHotel(int id);
 
     void approveHotel(int id);
+
+    List<HotelGetListOutputDto> getSuggestHotel(float latitudeIp, float longitudeIp);
 }
