@@ -34,7 +34,7 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
             "h.description as description,\n" +
             "h.image as image,\n" +
             "h.phone as phone,\n" +
-            "AVG(f.star_point) as startPoint,\n" +
+            "ROUND(AVG(f.star_point),1) as startPoint,\n" +
             "ROUND(AVG(rt.price),3) as price\n" +
             "FROM hotel as h\n" +
             "left Join feedback as f\n" +
@@ -66,6 +66,7 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
             "GROUP BY h.id", nativeQuery = true)
     List<HotelSearch> getHotelByCity(String cityId);
 
+    /*test merge*/
     @Transactional
     @Modifying
     @Query(value = "UPDATE hotel\n" +

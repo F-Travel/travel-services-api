@@ -1,6 +1,5 @@
 package com.fptu.edu.travelservices.dto.out.room;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RoomTypeGetListOutputDto {
     private String roomTypeId;
+
+    private String image;
 
     private String typeRoomName;
 
