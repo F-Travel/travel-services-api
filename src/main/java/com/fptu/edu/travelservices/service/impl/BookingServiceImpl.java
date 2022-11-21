@@ -85,10 +85,10 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public List<BookingRoomListOutputDto> getListBooking(int roomId) {
+    public List<BookingRoomListOutputDto> getListBooking(int hotelId) {
 
         /*get list request booking in DB*/
-        List<BookingList> bookingLists = bookingRepository.getListBooking(roomId);
+        List<BookingList> bookingLists = bookingRepository.getListBooking(hotelId);
 
         if (bookingLists.isEmpty()){
             new ResourceNotFoundException("");
