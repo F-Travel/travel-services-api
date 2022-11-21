@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FeedBackResponse {
+
     @JsonProperty("comment")
     private String comment;
 
@@ -17,4 +18,7 @@ public class FeedBackResponse {
 
     @JsonProperty("user_name")
     private String userName;
+
+    @JsonProperty("avatar")
+    private String avatar;
 }

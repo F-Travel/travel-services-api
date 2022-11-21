@@ -13,4 +13,6 @@ public class FeedBackOutputDto {
     private int starPoint;
 
     private String userName;
+
+    private String avatar;
 }

@@ -4,4 +4,5 @@ public interface FeedBack {
     String getComment();
     Integer getStarPoint();
     String getUserName();
+    String getAvatar();
 }
