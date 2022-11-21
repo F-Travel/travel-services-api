@@ -18,6 +18,7 @@ public interface RoomTypeRepository extends JpaRepository<RoomType, Integer> {
 
     @Query(value = "SELECT \n" +
             "rt.id as roomTypeId,\n" +
+            "rt.image as image,\n" +
             "rt.type_room_name as typeRoomName,\n" +
             "rt.room_area as roomArea,\n" +
             "rt.price as price,\n" +
