@@ -18,7 +18,7 @@ public interface FeedBackRepository extends JpaRepository<Feedback, Integer> {
             "f.comment as comment,\n" +
             "f.star_point as starPoint,\n" +
             "u.full_name as userName,\n" +
-            "u.avatar as avatar,\n" +
+            "u.avatar as avatar\n" +
             "FROM feedback as f\n" +
             "INNER JOIN user as u\n" +
             "ON f.user_id = u.id\n" +
