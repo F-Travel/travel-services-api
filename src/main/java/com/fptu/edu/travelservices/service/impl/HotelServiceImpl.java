@@ -1,6 +1,7 @@
 package com.fptu.edu.travelservices.service.impl;
 
 import com.fptu.edu.travelservices.common.DateCommon;
+import com.fptu.edu.travelservices.dto.out.feedback.FeedBackListReportOutputDto;
 import com.fptu.edu.travelservices.dto.out.feedback.FeedBackOutputDto;
 import com.fptu.edu.travelservices.dto.out.hotel.HotelListOutputDto;
 import com.fptu.edu.travelservices.dto.result.FeedBack;
@@ -102,6 +103,27 @@ public class HotelServiceImpl implements HotelService {
         List<HotelListOutputDto> hotelOutputDtos = mapper.map(hotels , listType);
 
         return hotelOutputDtos;
+    }
+
+    @Override
+    public List<HotelListOutputDto> getHotelByOwnerId(long ownerId) {
+        /*get list hotel DB*/
+        List<Hotel> hotels = hotelRepository.findAll();
+
+        if(hotels.isEmpty()){
+            new ResourceNotFoundException("");
+        }
+
+        /*filter OwnerId*/
+        List<HotelListOutputDto> outputDtos =  hotels.stream()
+                .filter(item -> item.getOwnerId() == ownerId &&
+                        item.getStatusHotel().equals("Censored Hotel"))
+                .map(user -> { HotelListOutputDto result = mapper
+                        .map(user, HotelListOutputDto.class);
+                    return result;
+                }).collect(Collectors.toList());
+
+        return outputDtos;
     }
 
     @Override

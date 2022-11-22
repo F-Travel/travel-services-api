@@ -12,6 +12,8 @@ public interface HotelService {
 
     List<HotelListOutputDto> getHotels();
 
+    List<HotelListOutputDto> getHotelByOwnerId(long OwnerId);
+
     List<HotelGetListOutputDto> searchHotels(String param);
 
     List<HotelGetListOutputDto> getHotelsByCity(String cityId);

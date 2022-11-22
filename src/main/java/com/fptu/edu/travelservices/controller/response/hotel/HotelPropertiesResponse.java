@@ -9,6 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HotelPropertiesResponse {
+
+    @JsonProperty("properties_type_id")
+    private String propertiesTypeId;
+
     @JsonProperty("properties_type")
     private String propertiesType;
 

@@ -1,6 +1,5 @@
 package com.fptu.edu.travelservices.dto.out.hotel;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HotelPropertiesOutputDto {
+
+    private String propertiesTypeId;
+
     private String propertiesType;
 
     private String propertiesTypeName;

@@ -3,6 +3,7 @@ package com.fptu.edu.travelservices.controller;
 import com.fptu.edu.travelservices.controller.request.hotel.HotelRegisterRequest;
 import com.fptu.edu.travelservices.controller.response.hotel.HotelDetailResponse;
 import com.fptu.edu.travelservices.controller.response.hotel.HotelGetListResponse;
+import com.fptu.edu.travelservices.controller.response.hotel.HotelListByOwnerIdResponse;
 import com.fptu.edu.travelservices.controller.response.hotel.HotelListResponse;
 import com.fptu.edu.travelservices.dto.in.hotel.HotelRegisterInputDto;
 import com.fptu.edu.travelservices.dto.out.hotel.HotelGetListOutputDto;
@@ -51,6 +52,22 @@ public class HotelController {
 
         Type listType = new TypeToken<List<HotelListResponse>>(){}.getType();
         List<HotelListResponse> hotelResponses = mapper.map(outInputDtos , listType);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(hotelResponses);
+    }
+
+    @GetMapping("/list-by-ownerId/{ownerId}")
+    public ResponseEntity<?> getListHotelByHotelOwner(@PathVariable String ownerId) {
+
+        long id =  Long.parseLong(ownerId);
+
+        /*mapping form request register hotel*/
+        List<HotelListOutputDto> outInputDtos = hotelService.getHotelByOwnerId(id);
+
+        Type listType = new TypeToken<List<HotelListByOwnerIdResponse>>(){}.getType();
+        List<HotelListByOwnerIdResponse> hotelResponses = mapper.map(outInputDtos , listType);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
