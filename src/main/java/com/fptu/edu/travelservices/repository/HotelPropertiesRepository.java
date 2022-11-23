@@ -13,6 +13,7 @@ import java.util.List;
 @Transactional
 public interface HotelPropertiesRepository extends JpaRepository<HotelProperties, Integer> {
     @Query(value = "SELECT \n" +
+            "hpt.id as propertiesTypeId,\n" +
             "hp.properties_type as propertiesType,\n" +
             "hpt.properties_type_nm as propertiesTypeName\n" +
             "FROM hotel_properties as hp\n" +

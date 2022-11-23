@@ -12,6 +12,9 @@ public class RoomTypeGetListResponse {
     @JsonProperty("room_type_id")
     private String roomTypeId;
 
+    @JsonProperty("image")
+    private String image;
+
     @JsonProperty("type_room_name")
     private String typeRoomName;
 

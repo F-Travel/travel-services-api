@@ -46,11 +46,11 @@ public class BookingController {
                 .body(bookingId);
     }
 
-    @GetMapping("/list-request/{roomId}")
+    @GetMapping("/list-request/{hotelId}")
     /*@PreAuthorize("hasRole('MODERATOR')")*/
-    public ResponseEntity<?> getListRequestBooking(@PathVariable String roomId) {
+    public ResponseEntity<?> getListRequestBooking(@PathVariable String hotelId) {
 
-        int id = Integer.parseInt(roomId);
+        int id = Integer.parseInt(hotelId);
 
         /*search list hotel*/
         List<BookingRoomListOutputDto> outputDtos = bookingService.getListBooking(id);

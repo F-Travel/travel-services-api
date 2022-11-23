@@ -7,7 +7,7 @@ public interface HotelSearch {
     String getImage();
     String getPhone();
     String getDescription();
-    Integer getStartPoint();
+    String getStartPoint();
     Float getPrice();
 }
 

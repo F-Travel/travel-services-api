@@ -26,14 +26,16 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
             "b.total_price as totalPrice,\n" +
             "DATE_FORMAT(b.create_time, '%d/%m/%Y') as dateBooking,\n" +
             "b.booking_status as bookingStatus\n" +
-            "FROM booking as b\n" +
-            "INNER JOIN booking_room as br\n" +
+            "FROM travelservices.booking as b\n" +
+            "INNER JOIN travelservices.booking_room as br\n" +
             "ON b.id = br.booking_id\n" +
-            "INNER JOIN room_type as rt\n" +
+            "INNER JOIN travelservices.room_type as rt\n" +
             "ON br.room_id = rt.id\n" +
+            "INNER JOIN travelservices.hotel as h\n" +
+            "ON h.id= rt.hotel_id\n" +
             "WHERE b.booking_status = 'booking waiting approve'\n" +
             "and rt.id = ?1", nativeQuery = true)
-    List<BookingList> getListBooking(int roomId);
+    List<BookingList> getListBooking(int hotelId);
 
     @Transactional
     @Modifying

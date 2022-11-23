@@ -1,7 +1,9 @@
 package com.fptu.edu.travelservices.service.impl;
 
 import com.fptu.edu.travelservices.common.DateCommon;
+import com.fptu.edu.travelservices.dto.out.feedback.FeedBackListReportOutputDto;
 import com.fptu.edu.travelservices.dto.out.feedback.FeedBackOutputDto;
+import com.fptu.edu.travelservices.dto.out.hotel.HotelListOutputDto;
 import com.fptu.edu.travelservices.dto.result.FeedBack;
 import com.fptu.edu.travelservices.dto.result.HotelPropertiesList;
 import com.fptu.edu.travelservices.dto.result.HotelSearch;
@@ -40,7 +42,7 @@ public class HotelServiceImpl implements HotelService {
     public static final String CENSORED_HOTEL = "Censored Hotel";
 
     /*status hotel censored hotel*/
-    public static final String DELETED_HOTEL = "deleted Hotel";
+    public static final String DELETED_HOTEL = "Deleted Hotel";
 
     @Autowired
     private HotelRepository hotelRepository;
@@ -89,9 +91,45 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public List<HotelGetListOutputDto> getHotels() {
+    public List<HotelListOutputDto> getHotels() {
         /*get list hotel DB*/
         List<Hotel> hotels = hotelRepository.findAll();
+
+        if(hotels.isEmpty()){
+            new ResourceNotFoundException("");
+        }
+
+        Type listType = new TypeToken<List<HotelListOutputDto>>(){}.getType();
+        List<HotelListOutputDto> hotelOutputDtos = mapper.map(hotels , listType);
+
+        return hotelOutputDtos;
+    }
+
+    @Override
+    public List<HotelListOutputDto> getHotelByOwnerId(long ownerId) {
+        /*get list hotel DB*/
+        List<Hotel> hotels = hotelRepository.findAll();
+
+        if(hotels.isEmpty()){
+            new ResourceNotFoundException("");
+        }
+
+        /*filter OwnerId*/
+        List<HotelListOutputDto> outputDtos =  hotels.stream()
+                .filter(item -> item.getOwnerId() == ownerId &&
+                        item.getStatusHotel().equals("Censored Hotel"))
+                .map(user -> { HotelListOutputDto result = mapper
+                        .map(user, HotelListOutputDto.class);
+                    return result;
+                }).collect(Collectors.toList());
+
+        return outputDtos;
+    }
+
+    @Override
+    public List<HotelGetListOutputDto> searchHotels(String param) {
+
+        List<HotelSearch> hotels = hotelRepository.searchHotel(param);
 
         if(hotels.isEmpty()){
             new ResourceNotFoundException("");
@@ -104,9 +142,8 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public List<HotelGetListOutputDto> searchHotels(String param) {
-
-        List<HotelSearch> hotels = hotelRepository.searchHotel(param);
+    public List<HotelGetListOutputDto> getHotelsByCity(String cityId) {
+        List<HotelSearch> hotels = hotelRepository.getHotelByCity(cityId);
 
         if(hotels.isEmpty()){
             new ResourceNotFoundException("");
@@ -182,6 +219,22 @@ public class HotelServiceImpl implements HotelService {
     public void approveHotel(int id) {
         /*update status censored hotel*/
         hotelRepository.updateStatusHotel(CENSORED_HOTEL, id);
+    }
+
+    @Override
+    public List<HotelGetListOutputDto> getSuggestHotel(float latitudeIp, float longitudeIp) {
+        List<Hotel> hotels = hotelRepository.findAll();
+
+        double distance;
+
+//        hotels.stream().filter(result -> distance =
+//                Math.sqrt(Math.pow((latitudeIp - result.getLatitude()), 2) + Math.pow((longitudeIp - result.getLongitude()), 2)))
+//                        .map(hotel -> {
+//                            HotelGetListOutputDto outputDto = new HotelGetListOutputDto();
+//
+//                            return outputDto;
+//                        }).findFirst().orElse(null);
+        return null;
     }
 
     private void saveHotelProperties(final List<HotelPropertiesInputDto> hotelPropertiesInputDtos, final int hotelId){

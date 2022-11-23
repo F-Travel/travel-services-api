@@ -7,4 +7,6 @@ import java.util.List;
 public interface CityService {
 
     List<CityGetListOutputDto> getListCity();
+
+    List<CityGetListOutputDto> getTopListCity();
 }

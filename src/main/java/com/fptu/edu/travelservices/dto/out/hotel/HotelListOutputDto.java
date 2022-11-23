@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class HotelGetListOutputDto {
+public class HotelListOutputDto {
     private int id;
 
     private String hotelName;
@@ -18,11 +18,5 @@ public class HotelGetListOutputDto {
 
     private int phone;
 
-    private String description;
-
-    private String startPoint;
-
-    private String price;
-
-    private double distance;
+    private String statusHotel;
 }

@@ -3,9 +3,12 @@ package com.fptu.edu.travelservices.controller;
 import com.fptu.edu.travelservices.controller.request.hotel.HotelRegisterRequest;
 import com.fptu.edu.travelservices.controller.response.hotel.HotelDetailResponse;
 import com.fptu.edu.travelservices.controller.response.hotel.HotelGetListResponse;
+import com.fptu.edu.travelservices.controller.response.hotel.HotelListByOwnerIdResponse;
+import com.fptu.edu.travelservices.controller.response.hotel.HotelListResponse;
 import com.fptu.edu.travelservices.dto.in.hotel.HotelRegisterInputDto;
 import com.fptu.edu.travelservices.dto.out.hotel.HotelGetListOutputDto;
 import com.fptu.edu.travelservices.dto.out.hotel.HotelDetailOutputDto;
+import com.fptu.edu.travelservices.dto.out.hotel.HotelListOutputDto;
 import com.fptu.edu.travelservices.service.HotelService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -45,10 +48,26 @@ public class HotelController {
     public ResponseEntity<?> getListHotel() {
 
         /*mapping form request register hotel*/
-        List<HotelGetListOutputDto> outInputDtos = hotelService.getHotels();
+        List<HotelListOutputDto> outInputDtos = hotelService.getHotels();
 
-        Type listType = new TypeToken<List<HotelGetListResponse>>(){}.getType();
-        List<HotelGetListResponse> hotelResponses = mapper.map(outInputDtos , listType);
+        Type listType = new TypeToken<List<HotelListResponse>>(){}.getType();
+        List<HotelListResponse> hotelResponses = mapper.map(outInputDtos , listType);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(hotelResponses);
+    }
+
+    @GetMapping("/list-by-ownerId/{ownerId}")
+    public ResponseEntity<?> getListHotelByHotelOwner(@PathVariable String ownerId) {
+
+        long id =  Long.parseLong(ownerId);
+
+        /*mapping form request register hotel*/
+        List<HotelListOutputDto> outInputDtos = hotelService.getHotelByOwnerId(id);
+
+        Type listType = new TypeToken<List<HotelListByOwnerIdResponse>>(){}.getType();
+        List<HotelListByOwnerIdResponse> hotelResponses = mapper.map(outInputDtos , listType);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -113,6 +132,21 @@ public class HotelController {
         /*approved hotel*/
         hotelService.approveHotel(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @GetMapping("/city/{cityId}")
+    public ResponseEntity<?> getListHotelByCity(@PathVariable String cityId) {
+
+        /*search list hotel*/
+        List<HotelGetListOutputDto> outputDtos = hotelService.getHotelsByCity(cityId);
+
+        /*mapping hotel*/
+        Type listType = new TypeToken<List<HotelGetListResponse>>(){}.getType();
+        List<HotelGetListResponse> hotelResponses = mapper.map(outputDtos , listType);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(hotelResponses);
     }
 
 }
