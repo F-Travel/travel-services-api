@@ -24,16 +24,16 @@ public class Bill {
     private String statusBill;
 
     @Column(name = "ExternalInvoice")
-    private String ExternalInvoice;
+    private String externalInvoice;
 
     @Column(name = "ExternalTransaction")
-    private String ExternalTransaction;
+    private String externalTransaction;
 
-    @Column(name = "UserId")
-    private String UserId;
+    @Column(name = "ToTalAmount")
+    private float totalAmount;
 
-    @Column(name = "OwnerId")
-    private String ownerId;
+    @Column(name = "BookingId")
+    private int bookingId;
 
     @Column(name = "CreateTime")
     @Temporal(TemporalType.TIMESTAMP)

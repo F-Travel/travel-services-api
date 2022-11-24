@@ -9,6 +9,7 @@ public class PaymentConfig {
     //    @Value("${host.url}/return")
     public static String vnp_Returnurl = "";
     public static String vnp_TmnCode = "DRHTBKTQ";
+    public static String vnp_TmnCode_External_Invoice = "kientest";
     public static String vnp_HashSecret = "SGAMCNSWNMBISPWKRLZXBUEQDZHDBPGT";
     //    TO DO: Change this
     public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/merchant.html";
