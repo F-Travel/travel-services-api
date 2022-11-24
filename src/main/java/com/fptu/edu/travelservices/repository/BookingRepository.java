@@ -1,6 +1,8 @@
 package com.fptu.edu.travelservices.repository;
 
 import com.fptu.edu.travelservices.dto.result.BookingList;
+import com.fptu.edu.travelservices.dto.result.HistoryBooking;
+import com.fptu.edu.travelservices.dto.result.RoomHistoryBooking;
 import com.fptu.edu.travelservices.entity.Booking;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -36,6 +38,34 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
             "WHERE b.booking_status = 'booking waiting approve'\n" +
             "and rt.id = ?1", nativeQuery = true)
     List<BookingList> getListBooking(int hotelId);
+
+
+    @Query(value = "SELECT DISTINCT\n" +
+            "ht.hotel_name as hotelName,\n" +
+            "ht.image as image,\n" +
+            "ht.address as address,\n" +
+            "b.booking_status as bookingStatus\n" +
+            "FROM booking as b\n" +
+            "INNER JOIN booking_room as br\n" +
+            "ON b.id = br.booking_id\n" +
+            "INNER JOIN room_type as rt\n" +
+            "ON br.room_id = rt.id\n" +
+            "INNER JOIN hotel as ht\n" +
+            "ON rt.hotel_id = ht.id\n" +
+            "WHERE b.user_id = ?1", nativeQuery = true)
+    List<HistoryBooking> getHistoryBooking(int userId);
+
+    @Query(value = "SELECT DISTINCT\n" +
+            "rt.type_room_name as roomName\n" +
+            "FROM booking as b\n" +
+            "INNER JOIN booking_room as br\n" +
+            "ON b.id = br.booking_id\n" +
+            "INNER JOIN room_type as rt\n" +
+            "ON br.room_id = rt.id\n" +
+            "INNER JOIN hotel as ht\n" +
+            "ON rt.hotel_id = ht.id\n" +
+            "WHERE b.user_id = ?1", nativeQuery = true)
+    List<RoomHistoryBooking> getRoomHistoryBooking(int userId);
 
     @Transactional
     @Modifying

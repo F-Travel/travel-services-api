@@ -1,9 +1,13 @@
 package com.fptu.edu.travelservices.service.impl;
 
 import com.fptu.edu.travelservices.common.DateCommon;
+import com.fptu.edu.travelservices.dto.out.booking.HistoryBookingOutputDto;
+import com.fptu.edu.travelservices.dto.out.booking.RoomBookingHistoryOutputDto;
 import com.fptu.edu.travelservices.dto.result.BookingList;
 import com.fptu.edu.travelservices.dto.in.booking.BookingRoomInputDto;
 import com.fptu.edu.travelservices.dto.out.booking.BookingRoomListOutputDto;
+import com.fptu.edu.travelservices.dto.result.HistoryBooking;
+import com.fptu.edu.travelservices.dto.result.RoomHistoryBooking;
 import com.fptu.edu.travelservices.entity.Booking;
 import com.fptu.edu.travelservices.entity.BookingRoom;
 import com.fptu.edu.travelservices.exception.ResourceNotFoundException;
@@ -96,6 +100,29 @@ public class BookingServiceImpl implements BookingService {
 
         Type listType = new TypeToken<List<BookingRoomListOutputDto>>(){}.getType();
         List<BookingRoomListOutputDto> bookingOutputDtos = mapper.map(bookingLists , listType);
+
+        return bookingOutputDtos;
+    }
+
+    @Override
+    public List<HistoryBookingOutputDto> getListHistoryBooking(int userId) {
+        List<HistoryBooking> historyBookings = bookingRepository.getHistoryBooking(userId);
+//
+//        HistoryBookingOutputDto outputDto = new HistoryBookingOutputDto();
+//
+//        List<HistoryBookingOutputDto> outputDtoList;
+
+        Type listType = new TypeToken<List<HistoryBookingOutputDto>>(){}.getType();
+        List<HistoryBookingOutputDto> bookingOutputDtos = mapper.map(historyBookings , listType);
+
+//        outputDtoList = mapper.map(bookingOutputDtos, )
+//
+//        List<RoomHistoryBooking> roomHistoryBookings = bookingRepository.getRoomHistoryBooking(userId);
+//
+//        Type listTypeRoom = new TypeToken<List<RoomBookingHistoryOutputDto>>(){}.getType();
+//        List<RoomBookingHistoryOutputDto> bookingRoom = mapper.map(roomHistoryBookings , listType);
+//
+//        outputDto.setRoomBookingHistory(bookingRoom);
 
         return bookingOutputDtos;
     }

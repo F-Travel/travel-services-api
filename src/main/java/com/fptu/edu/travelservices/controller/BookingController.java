@@ -2,8 +2,11 @@ package com.fptu.edu.travelservices.controller;
 
 import com.fptu.edu.travelservices.controller.request.booking.BookingRoomRequest;
 import com.fptu.edu.travelservices.controller.response.booking.BookingRoomGetListResponse;
+import com.fptu.edu.travelservices.controller.response.booking.HistoryBookingResponse;
 import com.fptu.edu.travelservices.dto.in.booking.BookingRoomInputDto;
 import com.fptu.edu.travelservices.dto.out.booking.BookingRoomListOutputDto;
+import com.fptu.edu.travelservices.dto.out.booking.HistoryBookingOutputDto;
+import com.fptu.edu.travelservices.dto.out.booking.RoomBookingHistoryOutputDto;
 import com.fptu.edu.travelservices.service.BookingService;
 import com.fptu.edu.travelservices.service.impl.EmailSenderService;
 import org.modelmapper.ModelMapper;
@@ -87,5 +90,39 @@ public class BookingController {
         bookingService.rejectBooking(id);
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/history/{userId}")
+    /*@PreAuthorize("hasRole('MODERATOR')")*/
+    public ResponseEntity<?> getListHistoryBooking(@PathVariable String userId) {
+
+        int id = Integer.parseInt(userId);
+
+        /*search list hotel*/
+        List<HistoryBookingOutputDto> outputDtos = bookingService.getListHistoryBooking(id);
+
+        Type listType = new TypeToken<List<HistoryBookingResponse>>(){}.getType();
+        List<HistoryBookingResponse> bookingResponses = mapper.map(outputDtos , listType);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(bookingResponses);
+    }
+
+    @GetMapping("/history/{userId}")
+    /*@PreAuthorize("hasRole('MODERATOR')")*/
+    public ResponseEntity<?> detailBooking(@PathVariable String userId) {
+
+        int id = Integer.parseInt(userId);
+
+        /*search list hotel*/
+        List<HistoryBookingOutputDto> outputDtos = bookingService.getListHistoryBooking(id);
+
+        Type listType = new TypeToken<List<HistoryBookingResponse>>(){}.getType();
+        List<HistoryBookingResponse> bookingResponses = mapper.map(outputDtos , listType);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(bookingResponses);
     }
 }
