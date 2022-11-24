@@ -17,10 +17,10 @@ public interface CityRepository extends JpaRepository<City, Integer> {
             "c.city_image as cityImage,\n" +
             "c.city_name as cityName,\n" +
             "COUNT(c.id) as total\n" +
-            "FROM travelservices.city as c\n" +
-            "inner Join travelservices.hotel as h\n" +
+            "FROM city as c\n" +
+            "inner Join hotel as h\n" +
             "ON c.id = h.city_id\n" +
-            "inner Join travelservices.room_type as rt\n" +
+            "inner Join room_type as rt\n" +
             "ON h.id = rt.hotel_id\n" +
             "inner Join booking_room as br\n" +
             "ON rt.id = br.room_id\n" +

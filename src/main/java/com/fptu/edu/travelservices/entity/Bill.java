@@ -29,7 +29,7 @@ public class Bill {
     @Column(name = "ExternalTransaction")
     private String externalTransaction;
 
-    @Column(name = "ToTalAmount")
+    @Column(name = "TotalAmount")
     private float totalAmount;
 
     @Column(name = "BookingId")

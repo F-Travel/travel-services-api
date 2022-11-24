@@ -109,20 +109,20 @@ public class BookingController {
                 .body(bookingResponses);
     }
 
-    @GetMapping("/history/{userId}")
-    /*@PreAuthorize("hasRole('MODERATOR')")*/
-    public ResponseEntity<?> detailBooking(@PathVariable String userId) {
-
-        int id = Integer.parseInt(userId);
-
-        /*search list hotel*/
-        List<HistoryBookingOutputDto> outputDtos = bookingService.getListHistoryBooking(id);
-
-        Type listType = new TypeToken<List<HistoryBookingResponse>>(){}.getType();
-        List<HistoryBookingResponse> bookingResponses = mapper.map(outputDtos , listType);
-
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(bookingResponses);
-    }
+//    @GetMapping("/history/{userId}")
+//    /*@PreAuthorize("hasRole('MODERATOR')")*/
+//    public ResponseEntity<?> detailBooking(@PathVariable String userId) {
+//
+//        int id = Integer.parseInt(userId);
+//
+//        /*search list hotel*/
+//        List<HistoryBookingOutputDto> outputDtos = bookingService.getListHistoryBooking(id);
+//
+//        Type listType = new TypeToken<List<HistoryBookingResponse>>(){}.getType();
+//        List<HistoryBookingResponse> bookingResponses = mapper.map(outputDtos , listType);
+//
+//        return ResponseEntity
+//                .status(HttpStatus.OK)
+//                .body(bookingResponses);
+//    }
 }
