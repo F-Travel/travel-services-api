@@ -2,6 +2,7 @@ package com.fptu.edu.travelservices.repository;
 
 import com.fptu.edu.travelservices.dto.result.BookingList;
 import com.fptu.edu.travelservices.dto.result.HistoryBooking;
+import com.fptu.edu.travelservices.dto.result.MonthlyRevenueList;
 import com.fptu.edu.travelservices.dto.result.RoomHistoryBooking;
 import com.fptu.edu.travelservices.entity.Booking;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -66,6 +67,22 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
             "ON rt.hotel_id = ht.id\n" +
             "WHERE b.user_id = ?1", nativeQuery = true)
     List<RoomHistoryBooking> getRoomHistoryBooking(int userId);
+
+    @Query(value = "SELECT DISTINCT \n" +
+            "DISTINCT bk.id as numberBooking,\n" +
+            "total_price as totalAmount,\n" +
+            "DATE_FORMAT(bk.create_time, '%d/%m/%Y') createDate\n" +
+            "FROM booking as bk\n" +
+            "INNER JOIN booking_room as br\n" +
+            "ON bk.id = br.booking_id\n" +
+            "INNER JOIN room_type as rt\n" +
+            "ON br.room_id = rt.id\n" +
+            "INNER JOIN hotel as ht\n" +
+            "ON rt.hotel_id = ht.id\n" +
+            "WHERE ht.id = ?1\n" +
+            "AND DATE_FORMAT(bk.create_time, '%d/%m/%Y') >= ?2\n" +
+            "AND DATE_FORMAT(bk.create_time, '%d/%m/%Y') <= ?3", nativeQuery = true)
+    List<MonthlyRevenueList> getMonthlyRevenue(int hotelId, String startDate, String endDate);
 
     @Transactional
     @Modifying

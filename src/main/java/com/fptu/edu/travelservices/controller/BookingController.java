@@ -1,9 +1,11 @@
 package com.fptu.edu.travelservices.controller;
 
 import com.fptu.edu.travelservices.controller.request.booking.BookingRoomRequest;
+import com.fptu.edu.travelservices.controller.response.booking.BookingMonthlyRevenueListResponse;
 import com.fptu.edu.travelservices.controller.response.booking.BookingRoomGetListResponse;
 import com.fptu.edu.travelservices.controller.response.booking.HistoryBookingResponse;
 import com.fptu.edu.travelservices.dto.in.booking.BookingRoomInputDto;
+import com.fptu.edu.travelservices.dto.out.booking.BookingMonthlyRevenueListOutputDto;
 import com.fptu.edu.travelservices.dto.out.booking.BookingRoomListOutputDto;
 import com.fptu.edu.travelservices.dto.out.booking.HistoryBookingOutputDto;
 import com.fptu.edu.travelservices.dto.out.booking.RoomBookingHistoryOutputDto;
@@ -103,6 +105,26 @@ public class BookingController {
 
         Type listType = new TypeToken<List<HistoryBookingResponse>>(){}.getType();
         List<HistoryBookingResponse> bookingResponses = mapper.map(outputDtos , listType);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(bookingResponses);
+    }
+
+
+    @GetMapping("/revenue")
+    /*@PreAuthorize("hasRole('MODERATOR')")*/
+    public ResponseEntity<?> getMonthlyRevenue(@RequestParam(name = "hotelId") String hotelId,
+                                               @RequestParam(name = "startDate") String startDate,
+                                               @RequestParam(name = "endDate") String endDate) {
+
+        int id = Integer.parseInt(hotelId);
+
+        /*search list hotel*/
+        List<BookingMonthlyRevenueListOutputDto> outputDtos = bookingService.getListMonthlyRevenue(id, startDate,endDate);
+
+        Type listType = new TypeToken<List<BookingMonthlyRevenueListResponse>>(){}.getType();
+        List<BookingMonthlyRevenueListResponse> bookingResponses = mapper.map(outputDtos , listType);
 
         return ResponseEntity
                 .status(HttpStatus.OK)

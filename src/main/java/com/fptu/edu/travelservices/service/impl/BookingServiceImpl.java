@@ -1,12 +1,14 @@
 package com.fptu.edu.travelservices.service.impl;
 
 import com.fptu.edu.travelservices.common.DateCommon;
+import com.fptu.edu.travelservices.dto.out.booking.BookingMonthlyRevenueListOutputDto;
 import com.fptu.edu.travelservices.dto.out.booking.HistoryBookingOutputDto;
 import com.fptu.edu.travelservices.dto.out.booking.RoomBookingHistoryOutputDto;
 import com.fptu.edu.travelservices.dto.result.BookingList;
 import com.fptu.edu.travelservices.dto.in.booking.BookingRoomInputDto;
 import com.fptu.edu.travelservices.dto.out.booking.BookingRoomListOutputDto;
 import com.fptu.edu.travelservices.dto.result.HistoryBooking;
+import com.fptu.edu.travelservices.dto.result.MonthlyRevenueList;
 import com.fptu.edu.travelservices.dto.result.RoomHistoryBooking;
 import com.fptu.edu.travelservices.entity.Booking;
 import com.fptu.edu.travelservices.entity.BookingRoom;
@@ -125,6 +127,16 @@ public class BookingServiceImpl implements BookingService {
 //        outputDto.setRoomBookingHistory(bookingRoom);
 
         return bookingOutputDtos;
+    }
+
+    @Override
+    public List<BookingMonthlyRevenueListOutputDto> getListMonthlyRevenue(int hotelId, String startDate, String endDate) {
+        List<MonthlyRevenueList> monthlyRevenueLists = bookingRepository.getMonthlyRevenue(hotelId, startDate, endDate);
+
+        Type listType = new TypeToken<List<BookingMonthlyRevenueListOutputDto>>(){}.getType();
+        List<BookingMonthlyRevenueListOutputDto> outputDtos = mapper.map(monthlyRevenueLists , listType);
+
+        return outputDtos;
     }
 
     @Override
