@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ActivitiesAddNewRequest {
 
+    @JsonProperty(value = "name_activities")
+    private String nameActivities;
+
     @JsonProperty(value = "title")
     private String title;
 

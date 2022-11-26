@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ActivitiesAddNewInputDto {
 
+    private String nameActivities;
+
     private String title;
 
     private String image;

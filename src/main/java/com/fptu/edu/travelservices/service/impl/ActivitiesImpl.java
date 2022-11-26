@@ -2,12 +2,16 @@ package com.fptu.edu.travelservices.service.impl;
 
 import com.fptu.edu.travelservices.common.DateCommon;
 import com.fptu.edu.travelservices.dto.in.activities.ActivitiesAddNewInputDto;
+import com.fptu.edu.travelservices.dto.out.activities.ActivitieSuggestionOutputDto;
 import com.fptu.edu.travelservices.entity.Activities;
 import com.fptu.edu.travelservices.repository.ActivitiesRepository;
 import com.fptu.edu.travelservices.service.ActivitiesService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ActivitiesImpl implements ActivitiesService {
@@ -32,5 +36,20 @@ public class ActivitiesImpl implements ActivitiesService {
 
         /*insert activities in DB*/
         activitiesRepository.save(activities);
+    }
+
+    @Override
+    public List<ActivitieSuggestionOutputDto> getSuggestionActivities() {
+        List<Activities> activities = activitiesRepository.findAll();
+
+        /*filter OwnerId*/
+        List<ActivitieSuggestionOutputDto> outputDtos =  activities.stream()
+                .filter(item -> item.getId()<=9)
+                .map(activiti -> { ActivitieSuggestionOutputDto result = mapper
+                        .map(activiti, ActivitieSuggestionOutputDto.class);
+                    return result;
+                }).collect(Collectors.toList());
+
+        return outputDtos;
     }
 }
