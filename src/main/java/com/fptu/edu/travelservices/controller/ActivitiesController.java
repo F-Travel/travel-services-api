@@ -1,7 +1,9 @@
 package com.fptu.edu.travelservices.controller;
 
 import com.fptu.edu.travelservices.controller.request.activities.ActivitiesAddNewRequest;
+import com.fptu.edu.travelservices.controller.response.activities.ActivitiesDetailResponse;
 import com.fptu.edu.travelservices.dto.in.activities.ActivitiesAddNewInputDto;
+import com.fptu.edu.travelservices.dto.out.activities.ActivitiesDetailOutputDto;
 import com.fptu.edu.travelservices.service.ActivitiesService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,21 @@ public class ActivitiesController {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping("/detail/{activitiesId}")
+    /*@PreAuthorize("hasRole('MODERATOR')")*/
+    public ResponseEntity<?> getDetailActivities(@PathVariable String activitiesId) {
+
+        int id = Integer.parseInt(activitiesId);
+
+        /*activities detail*/
+        ActivitiesDetailOutputDto outputDtos = activitiesService.getActivitiesDetail(id);
+
+        ActivitiesDetailResponse response = mapper.map(outputDtos, ActivitiesDetailResponse.class);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(response);
     }
 
 }

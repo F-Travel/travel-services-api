@@ -1,8 +1,11 @@
 package com.fptu.edu.travelservices.controller;
 
+import com.fptu.edu.travelservices.controller.response.activities.ActivitieSuggestionResponse;
 import com.fptu.edu.travelservices.controller.response.home.CityGetListResponse;
 import com.fptu.edu.travelservices.controller.response.home.CityTopSixResponse;
+import com.fptu.edu.travelservices.dto.out.activities.ActivitieSuggestionOutputDto;
 import com.fptu.edu.travelservices.dto.out.home.CityGetListOutputDto;
+import com.fptu.edu.travelservices.service.ActivitiesService;
 import com.fptu.edu.travelservices.service.CityService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -27,6 +30,9 @@ public class HomeController {
 
     @Autowired
     private CityService cityService;
+
+    @Autowired
+    private ActivitiesService activitiesService;
 
     @GetMapping("/list-city")
     public ResponseEntity<?> getListCity() {
@@ -60,14 +66,14 @@ public class HomeController {
     public ResponseEntity<?> getSuggestEvent() {
 
         /*get list city*/
-        List<CityGetListOutputDto> outputDtos = cityService.getListCity();
+        List<ActivitieSuggestionOutputDto> outputDtos = activitiesService.getSuggestionActivities();
 
-        Type listType = new TypeToken<List<CityGetListResponse>>(){}.getType();
-        List<CityGetListResponse> cityListResponses = mapper.map(outputDtos , listType);
+        Type listType = new TypeToken<List<ActivitieSuggestionResponse>>(){}.getType();
+        List<ActivitieSuggestionResponse> suggestionResponses = mapper.map(outputDtos , listType);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(null);
+                .body(suggestionResponses);
     }
 
     @GetMapping("/suggest-hotel")
@@ -83,4 +89,5 @@ public class HomeController {
                 .status(HttpStatus.OK)
                 .body(null);
     }
+
 }

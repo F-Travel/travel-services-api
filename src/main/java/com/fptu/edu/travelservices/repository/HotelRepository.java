@@ -1,5 +1,6 @@
 package com.fptu.edu.travelservices.repository;
 
+import com.fptu.edu.travelservices.dto.result.HotelTopList;
 import com.fptu.edu.travelservices.entity.Hotel;
 import com.fptu.edu.travelservices.dto.result.HotelSearch;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -65,6 +66,14 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
             "h.city_id = ?1\n" +
             "GROUP BY h.id", nativeQuery = true)
     List<HotelSearch> getHotelByCity(String cityId);
+
+    @Query(value = "SELECT \n" +
+            "hotel.id as id,\n" +
+            "hotel.hotel_name as hotelName,\n" +
+            "hotel.image as image\n" +
+            "FROM hotel\n" +
+            "limit 4", nativeQuery = true)
+    List<HotelTopList> getHotelTopList();
 
     /*test merge*/
     @Transactional

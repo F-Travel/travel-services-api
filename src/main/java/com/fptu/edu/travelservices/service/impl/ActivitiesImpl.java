@@ -3,14 +3,22 @@ package com.fptu.edu.travelservices.service.impl;
 import com.fptu.edu.travelservices.common.DateCommon;
 import com.fptu.edu.travelservices.dto.in.activities.ActivitiesAddNewInputDto;
 import com.fptu.edu.travelservices.dto.out.activities.ActivitieSuggestionOutputDto;
+import com.fptu.edu.travelservices.dto.out.activities.ActivitiesDetailOutputDto;
+import com.fptu.edu.travelservices.dto.out.bill.BillHistoryListOutputDto;
+import com.fptu.edu.travelservices.dto.out.hotel.HotelTopListOutputDto;
+import com.fptu.edu.travelservices.dto.result.HotelTopList;
 import com.fptu.edu.travelservices.entity.Activities;
 import com.fptu.edu.travelservices.repository.ActivitiesRepository;
+import com.fptu.edu.travelservices.repository.HotelRepository;
 import com.fptu.edu.travelservices.service.ActivitiesService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,6 +26,9 @@ public class ActivitiesImpl implements ActivitiesService {
 
     @Autowired
     private ActivitiesRepository activitiesRepository;
+
+    @Autowired
+    private HotelRepository hotelRepository;
 
     @Autowired
     private ModelMapper mapper;
@@ -51,5 +62,34 @@ public class ActivitiesImpl implements ActivitiesService {
                 }).collect(Collectors.toList());
 
         return outputDtos;
+    }
+
+    @Override
+    public ActivitiesDetailOutputDto getActivitiesDetail(int id) {
+        Optional<Activities> hotels = activitiesRepository.findById(id);
+
+        ActivitiesDetailOutputDto outputDto = new ActivitiesDetailOutputDto();
+        outputDto.setNameActivities(hotels.get().getNameActivities());
+        outputDto.setTitle(hotels.get().getTitle());
+        outputDto.setImage(hotels.get().getImage());
+        outputDto.setImage1(hotels.get().getImage1());
+        outputDto.setImage2(hotels.get().getImage2());
+        outputDto.setStartTime(hotels.get().getStartTime());
+        outputDto.setEndTime(hotels.get().getEndTime());
+        outputDto.setDescription(hotels.get().getDescription());
+        outputDto.setDescription1(hotels.get().getDescription1());
+        outputDto.setDescription1(hotels.get().getDescription1());
+        outputDto.setLongitude(hotels.get().getLongitude());
+        outputDto.setLatitude(hotels.get().getLatitude());
+        outputDto.setUsername(hotels.get().getCreateBy());
+
+        List<HotelTopList> hotelTopLists = hotelRepository.getHotelTopList();
+
+        Type listType = new TypeToken<List<HotelTopListOutputDto>>(){}.getType();
+        List<HotelTopListOutputDto> outputDtos = mapper.map(hotelTopLists , listType);
+
+        outputDto.setHotelList(outputDtos);
+
+        return outputDto;
     }
 }
