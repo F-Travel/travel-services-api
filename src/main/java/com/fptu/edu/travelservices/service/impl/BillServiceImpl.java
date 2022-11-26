@@ -3,7 +3,6 @@ package com.fptu.edu.travelservices.service.impl;
 import com.fptu.edu.travelservices.common.DateCommon;
 import com.fptu.edu.travelservices.dto.in.bill.BillAddNewInputDto;
 import com.fptu.edu.travelservices.dto.out.bill.BillHistoryListOutputDto;
-import com.fptu.edu.travelservices.dto.out.booking.HistoryBookingOutputDto;
 import com.fptu.edu.travelservices.dto.result.BillHistoryList;
 import com.fptu.edu.travelservices.entity.Bill;
 import com.fptu.edu.travelservices.repository.BillRepository;
@@ -39,7 +38,6 @@ public class BillServiceImpl implements BillService {
         bills.setPaymentMethod(bill.getPaymentMethod());
         bills.setExternalInvoice(bill.getExternalInvoice());
         bills.setExternalTransaction(bill.getExternalTransaction());
-//        float amount = Float.parseFloat(bill.getTotalAmount());
         bills.setTotalAmount(Float.parseFloat(bill.getTotalAmount()));
         bills.setStatusBill(BILL_WAITING_PAYMENT);
         bills.setBookingId(Integer.parseInt(bill.getBookingId()));

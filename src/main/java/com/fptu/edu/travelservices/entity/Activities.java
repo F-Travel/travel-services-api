@@ -23,6 +23,12 @@ public class Activities {
     @Column(name = "Image")
     private String image;
 
+    @Column(name = "Image1")
+    private String image1;
+
+    @Column(name = "Image2")
+    private String image2;
+
     @Column(name = "StartTime")
     private String startTime;
 
@@ -31,6 +37,12 @@ public class Activities {
 
     @Column(name = "Description")
     private String description;
+
+    @Column(name = "Description1")
+    private String description1;
+
+    @Column(name = "Description2")
+    private String description2;
 
     @Column(name = "Latitude")
     private String latitude;
@@ -42,13 +54,13 @@ public class Activities {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
-    @Column(name = "CreatedBy")
-    private String createdBy;
+    @Column(name = "CreateBy")
+    private String createBy;
 
     @Column(name = "UpdatedTime")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedTime;
 
     @Column(name = "UpdatedBy")
-    private String UpdatedBy;
+    private String updatedBy;
 }
