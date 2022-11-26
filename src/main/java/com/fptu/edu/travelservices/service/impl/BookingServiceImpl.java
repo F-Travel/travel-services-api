@@ -1,15 +1,9 @@
 package com.fptu.edu.travelservices.service.impl;
 
 import com.fptu.edu.travelservices.common.DateCommon;
-import com.fptu.edu.travelservices.dto.out.booking.BookingMonthlyRevenueListOutputDto;
-import com.fptu.edu.travelservices.dto.out.booking.HistoryBookingOutputDto;
-import com.fptu.edu.travelservices.dto.out.booking.RoomBookingHistoryOutputDto;
-import com.fptu.edu.travelservices.dto.result.BookingList;
+import com.fptu.edu.travelservices.dto.out.booking.*;
+import com.fptu.edu.travelservices.dto.result.*;
 import com.fptu.edu.travelservices.dto.in.booking.BookingRoomInputDto;
-import com.fptu.edu.travelservices.dto.out.booking.BookingRoomListOutputDto;
-import com.fptu.edu.travelservices.dto.result.HistoryBooking;
-import com.fptu.edu.travelservices.dto.result.MonthlyRevenueList;
-import com.fptu.edu.travelservices.dto.result.RoomHistoryBooking;
 import com.fptu.edu.travelservices.entity.Booking;
 import com.fptu.edu.travelservices.entity.BookingRoom;
 import com.fptu.edu.travelservices.exception.ResourceNotFoundException;
@@ -135,6 +129,26 @@ public class BookingServiceImpl implements BookingService {
 
         Type listType = new TypeToken<List<BookingMonthlyRevenueListOutputDto>>(){}.getType();
         List<BookingMonthlyRevenueListOutputDto> outputDtos = mapper.map(monthlyRevenueLists , listType);
+
+        return outputDtos;
+    }
+
+    @Override
+    public List<BookingMonthlyRevenueReportOutputDto> getListMonthlyRevenueReport(int hotelId, String startDate, String endDate) {
+        List<MonthlyRevenueReport> monthlyRevenueLists = bookingRepository.getMonthlyRevenueListReport(hotelId, startDate, endDate);
+
+        Type listType = new TypeToken<List<BookingMonthlyRevenueReportOutputDto>>(){}.getType();
+        List<BookingMonthlyRevenueReportOutputDto> outputDtos = mapper.map(monthlyRevenueLists , listType);
+
+        return outputDtos;
+    }
+
+    @Override
+    public List<DebtMonthOutputDto> getListMonthlyDebt(int hotelId, String startDate, String endDate) {
+        List<MonthlyDebtReport> monthlyRevenueLists = bookingRepository.getDebt(hotelId, startDate, endDate);
+
+        Type listType = new TypeToken<List<DebtMonthOutputDto>>(){}.getType();
+        List<DebtMonthOutputDto> outputDtos = mapper.map(monthlyRevenueLists , listType);
 
         return outputDtos;
     }

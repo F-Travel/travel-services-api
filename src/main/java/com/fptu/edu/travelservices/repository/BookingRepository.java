@@ -1,9 +1,6 @@
 package com.fptu.edu.travelservices.repository;
 
-import com.fptu.edu.travelservices.dto.result.BookingList;
-import com.fptu.edu.travelservices.dto.result.HistoryBooking;
-import com.fptu.edu.travelservices.dto.result.MonthlyRevenueList;
-import com.fptu.edu.travelservices.dto.result.RoomHistoryBooking;
+import com.fptu.edu.travelservices.dto.result.*;
 import com.fptu.edu.travelservices.entity.Booking;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -83,6 +80,52 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
             "AND DATE_FORMAT(bk.create_time, '%d/%m/%Y') >= ?2\n" +
             "AND DATE_FORMAT(bk.create_time, '%d/%m/%Y') <= ?3", nativeQuery = true)
     List<MonthlyRevenueList> getMonthlyRevenue(int hotelId, String startDate, String endDate);
+
+    @Query(value = "SELECT DISTINCT \n" +
+            "DISTINCT bk.id as id,\n" +
+            "bk.user_booking as userBooking,\n" +
+            "bk.phone as phone,\n" +
+            "total_price as totalAmount,\n" +
+            "DATE_FORMAT(bk.create_time, '%d/%m/%Y') createDate\n" +
+            "FROM booking as bk\n" +
+            "INNER JOIN booking_room as br\n" +
+            "ON bk.id = br.booking_id\n" +
+            "INNER JOIN room_type as rt\n" +
+            "ON br.room_id = rt.id\n" +
+            "INNER JOIN hotel as ht\n" +
+            "ON rt.hotel_id = ht.id\n" +
+            "WHERE ht.id = ?1\n" +
+            "AND DATE_FORMAT(bk.create_time, '%d/%m/%Y') >= ?2\n" +
+            "AND DATE_FORMAT(bk.create_time, '%d/%m/%Y') <= ?3\n" +
+            "AND booking_status = 'booking approved'\n" +
+            "order by createDate DESC", nativeQuery = true)
+    List<MonthlyRevenueReport> getMonthlyRevenueListReport(int hotelId, String startDate, String endDate);
+
+    @Query(value = "SELECT DISTINCT\n" +
+            "(select \n" +
+            "sum(bill.total_amount)\n" +
+            "From bill\n" +
+            "where bill.payment_method = 'vnpay'\n" +
+            ") as vnpay,\n" +
+            "(select \n" +
+            "sum(bill.total_amount)\n" +
+            "From bill\n" +
+            "where bill.payment_method = 'cash'\n" +
+            ") as cash,\n" +
+            "sum(total_price*0.05) as paymentServices\n" +
+            "FROM booking as bk\n" +
+            "INNER JOIN booking_room as br\n" +
+            "ON bk.id = br.booking_id\n" +
+            "INNER JOIN bill as bi\n" +
+            "ON bk.id = bi.booking_id\n" +
+            "INNER JOIN room_type as rt\n" +
+            "ON br.room_id = rt.id\n" +
+            "INNER JOIN hotel as ht\n" +
+            "ON rt.hotel_id = ht.id\n" +
+            "WHERE ht.id = ?1\n" +
+            "AND DATE_FORMAT(bk.create_time, '%d/%m/%Y') >= ?2\n" +
+            "AND DATE_FORMAT(bk.create_time, '%d/%m/%Y') <= ?3", nativeQuery = true)
+    List<MonthlyDebtReport> getDebt(int hotelId, String startDate, String endDate);
 
     @Transactional
     @Modifying

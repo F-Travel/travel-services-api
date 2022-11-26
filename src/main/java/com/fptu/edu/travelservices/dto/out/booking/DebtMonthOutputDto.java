@@ -9,13 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DebtMonthOutputDto {
 
-    private String boutBooking;
-
-    private String debtBooking;
-
     private String cash;
 
-    private String onlinePayment;
+    private String vnpay;
 
-    private String totalAmount;
+    private String paymentServices;
 }
