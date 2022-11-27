@@ -107,40 +107,66 @@ public class BookingController {
 
     @GetMapping("/revenue")
     /*@PreAuthorize("hasRole('MODERATOR')")*/
-    public ResponseEntity<?> getMonthlyRevenue(@RequestParam(name = "hotelId") String hotelId,
+    public ResponseEntity<?> getMonthlyRevenue(@RequestParam(required= false) String hotelId,
                                                @RequestParam(name = "startDate") String startDate,
                                                @RequestParam(name = "endDate") String endDate) {
 
-        int id = Integer.parseInt(hotelId);
+        if(hotelId==null){
+            int id = 0;
+            /*search list hotel*/
+            List<BookingMonthlyRevenueListOutputDto> outputDtos = bookingService.getListMonthlyRevenue(id, startDate,endDate);
 
-        /*search list hotel*/
-        List<BookingMonthlyRevenueListOutputDto> outputDtos = bookingService.getListMonthlyRevenue(id, startDate,endDate);
+            Type listType = new TypeToken<List<BookingMonthlyRevenueListResponse>>(){}.getType();
+            List<BookingMonthlyRevenueListResponse> bookingResponses = mapper.map(outputDtos , listType);
 
-        Type listType = new TypeToken<List<BookingMonthlyRevenueListResponse>>(){}.getType();
-        List<BookingMonthlyRevenueListResponse> bookingResponses = mapper.map(outputDtos , listType);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(bookingResponses);
+        } else {
+            int id = Integer.parseInt(hotelId);
+            /*search list hotel*/
+            List<BookingMonthlyRevenueListOutputDto> outputDtos = bookingService.getListMonthlyRevenue(id, startDate,endDate);
 
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(bookingResponses);
+            Type listType = new TypeToken<List<BookingMonthlyRevenueListResponse>>(){}.getType();
+            List<BookingMonthlyRevenueListResponse> bookingResponses = mapper.map(outputDtos , listType);
+
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(bookingResponses);
+        }
     }
 
     @GetMapping("/revenue-report")
     /*@PreAuthorize("hasRole('MODERATOR')")*/
-    public ResponseEntity<?> getMonthlyRevenueReport(@RequestParam(name = "hotelId") String hotelId,
+    public ResponseEntity<?> getMonthlyRevenueReport(@RequestParam(required= false) String hotelId,
                                                @RequestParam(name = "startDate") String startDate,
                                                @RequestParam(name = "endDate") String endDate) {
 
-        int id = Integer.parseInt(hotelId);
+        if(hotelId==null){
+            int id = 0;
+            /*search list hotel*/
+            List<BookingMonthlyRevenueReportOutputDto> outputDtos = bookingService.getListMonthlyRevenueReport(id, startDate,endDate);
 
-        /*search list hotel*/
-        List<BookingMonthlyRevenueReportOutputDto> outputDtos = bookingService.getListMonthlyRevenueReport(id, startDate,endDate);
+            Type listType = new TypeToken<List<BookingMonthlyRevenueReportResponse>>(){}.getType();
+            List<BookingMonthlyRevenueReportResponse> bookingResponses = mapper.map(outputDtos , listType);
 
-        Type listType = new TypeToken<List<BookingMonthlyRevenueReportResponse>>(){}.getType();
-        List<BookingMonthlyRevenueReportResponse> bookingResponses = mapper.map(outputDtos , listType);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(bookingResponses);
+        } else {
+            int id = Integer.parseInt(hotelId);
+            /*search list hotel*/
+            List<BookingMonthlyRevenueReportOutputDto> outputDtos = bookingService.getListMonthlyRevenueReport(id, startDate,endDate);
 
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(bookingResponses);
+            Type listType = new TypeToken<List<BookingMonthlyRevenueReportResponse>>(){}.getType();
+            List<BookingMonthlyRevenueReportResponse> bookingResponses = mapper.map(outputDtos , listType);
+
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(bookingResponses);
+        }
+
+
     }
 
     @GetMapping("/debt")

@@ -125,26 +125,48 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<BookingMonthlyRevenueListOutputDto> getListMonthlyRevenue(int hotelId, String startDate, String endDate) {
-        List<MonthlyRevenueList> monthlyRevenueLists = bookingRepository.getMonthlyRevenue(hotelId, startDate, endDate);
 
-        Type listType = new TypeToken<List<BookingMonthlyRevenueListOutputDto>>(){}.getType();
-        List<BookingMonthlyRevenueListOutputDto> outputDtos = mapper.map(monthlyRevenueLists , listType);
+        if(hotelId == 0){
+            List<MonthlyRevenueList> monthlyRevenueLists = bookingRepository.getMonthlyRevenueAll(startDate, endDate);
 
-        return outputDtos;
+            Type listType = new TypeToken<List<BookingMonthlyRevenueListOutputDto>>(){}.getType();
+            List<BookingMonthlyRevenueListOutputDto> outputDtos = mapper.map(monthlyRevenueLists , listType);
+
+            return outputDtos;
+
+        }else {
+            List<MonthlyRevenueList> monthlyRevenueLists = bookingRepository.getMonthlyRevenue(hotelId, startDate, endDate);
+
+            Type listType = new TypeToken<List<BookingMonthlyRevenueListOutputDto>>(){}.getType();
+            List<BookingMonthlyRevenueListOutputDto> outputDtos = mapper.map(monthlyRevenueLists , listType);
+
+            return outputDtos;
+        }
     }
 
     @Override
     public List<BookingMonthlyRevenueReportOutputDto> getListMonthlyRevenueReport(int hotelId, String startDate, String endDate) {
-        List<MonthlyRevenueReport> monthlyRevenueLists = bookingRepository.getMonthlyRevenueListReport(hotelId, startDate, endDate);
 
-        Type listType = new TypeToken<List<BookingMonthlyRevenueReportOutputDto>>(){}.getType();
-        List<BookingMonthlyRevenueReportOutputDto> outputDtos = mapper.map(monthlyRevenueLists , listType);
+        if(hotelId == 0){
+            List<MonthlyRevenueReport> monthlyRevenueLists = bookingRepository.getMonthlyRevenueListReportAll(startDate, endDate);
 
-        return outputDtos;
+            Type listType = new TypeToken<List<BookingMonthlyRevenueReportOutputDto>>(){}.getType();
+            List<BookingMonthlyRevenueReportOutputDto> outputDtos = mapper.map(monthlyRevenueLists , listType);
+
+            return outputDtos;
+        }else {
+            List<MonthlyRevenueReport> monthlyRevenueLists = bookingRepository.getMonthlyRevenueListReport(hotelId, startDate, endDate);
+
+            Type listType = new TypeToken<List<BookingMonthlyRevenueReportOutputDto>>(){}.getType();
+            List<BookingMonthlyRevenueReportOutputDto> outputDtos = mapper.map(monthlyRevenueLists , listType);
+
+            return outputDtos;
+        }
     }
 
     @Override
     public List<DebtMonthOutputDto> getListMonthlyDebt(int hotelId, String startDate, String endDate) {
+
         List<MonthlyDebtReport> monthlyRevenueLists = bookingRepository.getDebt(hotelId, startDate, endDate);
 
         Type listType = new TypeToken<List<DebtMonthOutputDto>>(){}.getType();
