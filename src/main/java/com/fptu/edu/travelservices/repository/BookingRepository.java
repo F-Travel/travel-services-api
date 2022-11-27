@@ -93,8 +93,8 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
             "INNER JOIN hotel as ht\n" +
             "ON rt.hotel_id = ht.id\n" +
             "WHERE\n" +
-            "DATE_FORMAT(bk.create_time, '%d/%m/%Y') >= ?2\n" +
-            "AND DATE_FORMAT(bk.create_time, '%d/%m/%Y') <= ?3", nativeQuery = true)
+            "DATE_FORMAT(bk.create_time, '%d/%m/%Y') >= ?1\n" +
+            "AND DATE_FORMAT(bk.create_time, '%d/%m/%Y') <= ?2", nativeQuery = true)
     List<MonthlyRevenueList> getMonthlyRevenueAll(String startDate, String endDate);
 
     @Query(value = "SELECT DISTINCT \n" +
@@ -131,8 +131,8 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
             "INNER JOIN hotel as ht\n" +
             "ON rt.hotel_id = ht.id\n" +
             "WHERE \n" +
-            "DATE_FORMAT(bk.create_time, '%d/%m/%Y') >= ?2\n" +
-            "AND DATE_FORMAT(bk.create_time, '%d/%m/%Y') <= ?3\n" +
+            "DATE_FORMAT(bk.create_time, '%d/%m/%Y') >= ?1\n" +
+            "AND DATE_FORMAT(bk.create_time, '%d/%m/%Y') <= ?2\n" +
             "AND booking_status = 'booking approved'\n" +
             "order by createDate DESC", nativeQuery = true)
     List<MonthlyRevenueReport> getMonthlyRevenueListReportAll(String startDate, String endDate);
