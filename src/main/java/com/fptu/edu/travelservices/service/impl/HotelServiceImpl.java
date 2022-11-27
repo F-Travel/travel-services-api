@@ -3,6 +3,7 @@ package com.fptu.edu.travelservices.service.impl;
 import com.fptu.edu.travelservices.common.DateCommon;
 import com.fptu.edu.travelservices.dto.in.hotel.HotelPropertiesInputDto;
 import com.fptu.edu.travelservices.dto.in.hotel.HotelRegisterInputDto;
+import com.fptu.edu.travelservices.dto.in.hotel.HotelUpdateInputDto;
 import com.fptu.edu.travelservices.dto.out.feedback.FeedBackOutputDto;
 import com.fptu.edu.travelservices.dto.out.hotel.HotelDetailOutputDto;
 import com.fptu.edu.travelservices.dto.out.hotel.HotelGetListOutputDto;
@@ -87,6 +88,15 @@ public class HotelServiceImpl implements HotelService {
         saveHotelProperties(inputDto.getHotelProperties(), hotelId);
 
         return hotelId;
+    }
+
+    @Override
+    public int updateHotel(HotelUpdateInputDto i, int id) {
+        hotelRepository.updateHotel(i.getHotelName(), i.getDescription(),i.getAddress(),i.getCityId(),
+                i.getPhone(),i.getImage(), i.getImage1(), i.getImage2(),i.getImage3(), i.getImage4(),
+                i.getLatitude(), i.getLongitude(), i.getIsPaymentCard(), i.getCheckOutTime(), i.getCheckInTime(), id);
+
+        return 0;
     }
 
     @Override

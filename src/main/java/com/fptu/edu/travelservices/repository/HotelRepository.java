@@ -82,4 +82,27 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
             "SET status_hotel = ?1\n" +
             "WHERE id = ?2", nativeQuery = true)
     void updateStatusHotel(String hotelStatus, long id);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE hotel\n" +
+            "SET hotel_name = ?1,\n" +
+            "description = ?2,\n" +
+            "address = ?3,\n" +
+            "city_id = ?4,\n" +
+            "phone = ?5,\n" +
+            "image = ?6,\n" +
+            "image1 = ?7,\n" +
+            "image2 = ?10,\n" +
+            "image3 = ?11,\n" +
+            "image4 = ?12,\n" +
+            "latitude = ?13,\n" +
+            "longitude = ?14,\n" +
+            "is_payment_card = ?15,\n" +
+            "check_out_time = ?16,\n" +
+            "check_in_time = ?17\n" +
+            "WHERE id = ?18;", nativeQuery = true)
+    void updateHotel(String hotelName,String description,String address,String cityId,String phone
+            ,String image,String image1,String image2,String image3,String image4,String latitude
+            ,String longitude,String isPaymentCard,String checkOutTime,String checkInTime, int id);
 }
