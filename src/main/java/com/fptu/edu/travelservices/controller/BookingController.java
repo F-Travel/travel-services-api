@@ -76,7 +76,7 @@ public class BookingController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/booking/reject/{bookingId}")
+    @PutMapping("/reject/{bookingId}")
     /*@PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")*/
     public ResponseEntity<?> rejectBooking(@PathVariable String bookingId) {
 

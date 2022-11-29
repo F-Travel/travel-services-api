@@ -81,7 +81,7 @@ public class PaymentController {
 
         String vnp_OrderType = "other";
 
-        String vnp_ReturnUrl = "https://f-travel.azurewebsites.net/api/feedback/list-report";
+        String vnp_ReturnUrl = "http://localhost:3000/bill/payment/booking/";
 
         String vnp_TxnRef = externalInvoice;
 

@@ -125,8 +125,7 @@ public class HotelServiceImpl implements HotelService {
 
         /*filter OwnerId*/
         List<HotelListOutputDto> outputDtos =  hotels.stream()
-                .filter(item -> item.getOwnerId() == ownerId &&
-                        item.getStatusHotel().equals("Censored Hotel"))
+                .filter(item -> item.getOwnerId() == ownerId)
                 .map(user -> { HotelListOutputDto result = mapper
                         .map(user, HotelListOutputDto.class);
                     return result;
