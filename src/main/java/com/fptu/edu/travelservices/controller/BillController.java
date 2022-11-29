@@ -1,6 +1,8 @@
 package com.fptu.edu.travelservices.controller;
 
 import com.fptu.edu.travelservices.controller.response.bill.BillHistoryListResponse;
+import com.fptu.edu.travelservices.dto.in.bill.BillUpateInfoInputDto;
+import com.fptu.edu.travelservices.dto.in.hotel.HotelUpdateInputDto;
 import com.fptu.edu.travelservices.dto.out.bill.BillHistoryListOutputDto;
 import com.fptu.edu.travelservices.service.BillService;
 import org.modelmapper.ModelMapper;
@@ -39,5 +41,26 @@ public class BillController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(billHistoryListResponses);
+    }
+
+    @PutMapping("/update-bill")
+    public ResponseEntity<?> saveBillInfo(@RequestParam(name= "vnp_Amount") String vnpAmount,
+                                          @RequestParam(name = "vnp_TransactionNo") String transactionNo,
+                                          @RequestParam(name = "vnp_TxnRef") String vnpTxnRef) {
+
+        BillUpateInfoInputDto inputDto = BillUpateInfoInputDto
+                .builder()
+                .externalInvoice(vnpTxnRef)
+                .externalTransaction(transactionNo)
+                .totalAmount(vnpAmount).build();
+
+//        int id = Integer.parseInt(hotelId);
+//
+//        HotelUpdateInputDto inputDto = mapper.map(request , HotelUpdateInputDto.class);
+//
+//        int i =  hotelService.updateHotel(inputDto, id);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(null);
     }
 }

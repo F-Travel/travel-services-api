@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BookingRoomGetListResponse {
 
+    @JsonProperty("id")
+    private String id;
+
     @JsonProperty("room_name")
     private String roomName;
 

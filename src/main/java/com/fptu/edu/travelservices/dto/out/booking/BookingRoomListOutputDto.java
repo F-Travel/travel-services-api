@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BookingRoomListOutputDto {
 
+    private String id;
+
     private String roomName;
 
     private String checkIn;

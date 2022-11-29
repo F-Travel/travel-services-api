@@ -108,8 +108,16 @@ public class HotelServiceImpl implements HotelService {
             new ResourceNotFoundException("");
         }
 
-        Type listType = new TypeToken<List<HotelListOutputDto>>(){}.getType();
-        List<HotelListOutputDto> hotelOutputDtos = mapper.map(hotels , listType);
+        /*filter OwnerId*/
+        List<HotelListOutputDto> hotelOutputDtos =  hotels.stream()
+                .filter(item -> item.getStatusHotel().equals("Waiting Approve"))
+                .map(user -> { HotelListOutputDto result = mapper
+                        .map(user, HotelListOutputDto.class);
+                    return result;
+                }).collect(Collectors.toList());
+
+//        Type listType = new TypeToken<List<HotelListOutputDto>>(){}.getType();
+//        List<HotelListOutputDto> hotelOutputDtos = mapper.map(hotels , listType);
 
         return hotelOutputDtos;
     }
@@ -125,7 +133,9 @@ public class HotelServiceImpl implements HotelService {
 
         /*filter OwnerId*/
         List<HotelListOutputDto> outputDtos =  hotels.stream()
-                .filter(item -> item.getOwnerId() == ownerId)
+                .filter(item -> item.getOwnerId() == ownerId
+                        && (item.getStatusHotel().equals("Waiting Approve") ||
+                                item.getStatusHotel().equals("Censored Hotel")))
                 .map(user -> { HotelListOutputDto result = mapper
                         .map(user, HotelListOutputDto.class);
                     return result;

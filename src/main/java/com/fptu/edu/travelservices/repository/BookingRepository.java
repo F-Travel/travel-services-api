@@ -17,6 +17,7 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
     int getFistIdBooking();
 
     @Query(value = "SELECT\n" +
+            "b.id as id,\n" +
             "rt.type_room_name as roomName,\n" +
             "DATE_FORMAT(b.check_in, '%d/%m/%Y') as checkIn,\n" +
             "DATE_FORMAT(b.check_out, '%d/%m/%Y') as checkOut,\n" +

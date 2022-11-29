@@ -1,6 +1,7 @@
 package com.fptu.edu.travelservices.dto.result;
 
 public interface BookingList {
+    String getId();
     String getRoomName();
     String getCheckIn();
     String getCheckOut();
