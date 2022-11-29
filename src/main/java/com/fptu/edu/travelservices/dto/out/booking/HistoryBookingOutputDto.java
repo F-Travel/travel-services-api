@@ -11,6 +11,8 @@ import java.util.List;
 @NoArgsConstructor
 public class HistoryBookingOutputDto {
 
+    private String id;
+
     private String hotelName;
 
     private String image;

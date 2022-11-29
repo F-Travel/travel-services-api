@@ -13,6 +13,9 @@ import java.util.List;
 @NoArgsConstructor
 public class HistoryBookingResponse {
 
+    @JsonProperty("id")
+    private String id;
+
     @JsonProperty("hotel_name")
     private String hotelName;
 

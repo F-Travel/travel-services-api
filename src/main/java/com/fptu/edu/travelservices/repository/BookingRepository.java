@@ -39,6 +39,7 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
 
     @Query(value = "SELECT DISTINCT\n" +
+            "b.id as id,\n" +
             "ht.hotel_name as hotelName,\n" +
             "ht.image as image,\n" +
             "ht.address as address,\n" +
