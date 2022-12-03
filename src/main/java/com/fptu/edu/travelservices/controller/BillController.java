@@ -54,13 +54,9 @@ public class BillController {
                 .externalTransaction(transactionNo)
                 .totalAmount(vnpAmount).build();
 
-//        int id = Integer.parseInt(hotelId);
-//
-//        HotelUpdateInputDto inputDto = mapper.map(request , HotelUpdateInputDto.class);
-//
-//        int i =  hotelService.updateHotel(inputDto, id);
+        billService.saveBillInfo(inputDto);
+
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(null);
+                .status(HttpStatus.OK).build();
     }
 }

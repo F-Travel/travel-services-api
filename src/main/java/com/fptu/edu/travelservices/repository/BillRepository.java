@@ -1,9 +1,9 @@
 package com.fptu.edu.travelservices.repository;
 
 import com.fptu.edu.travelservices.dto.result.BillHistoryList;
-import com.fptu.edu.travelservices.dto.result.HistoryBooking;
 import com.fptu.edu.travelservices.entity.Bill;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -30,4 +30,13 @@ public interface BillRepository extends JpaRepository<Bill, Integer> {
             "ON rt.hotel_id = ht.id\n" +
             "WHERE bk.user_id = ?1", nativeQuery = true)
     List<BillHistoryList> getHistoryBill(int userId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE bill\n" +
+            "SET external_transaction = ?1,\n" +
+            "total_amount = ?2,\n" +
+            "status_bill = 'Đã thanh toán'\n" +
+            "WHERE external_invoice = ?3;", nativeQuery = true)
+    void saveBillInfo(String transaction,String amount,String invoice);
 }

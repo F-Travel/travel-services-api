@@ -2,6 +2,7 @@ package com.fptu.edu.travelservices.service.impl;
 
 import com.fptu.edu.travelservices.common.DateCommon;
 import com.fptu.edu.travelservices.dto.in.bill.BillAddNewInputDto;
+import com.fptu.edu.travelservices.dto.in.bill.BillUpateInfoInputDto;
 import com.fptu.edu.travelservices.dto.out.bill.BillHistoryListOutputDto;
 import com.fptu.edu.travelservices.dto.result.BillHistoryList;
 import com.fptu.edu.travelservices.entity.Bill;
@@ -48,6 +49,14 @@ public class BillServiceImpl implements BillService {
 
         billRepository.save(bills);
 
+    }
+
+    @Override
+    public void saveBillInfo(BillUpateInfoInputDto inputDto) {
+
+        billRepository.saveBillInfo(inputDto.getExternalTransaction()
+                ,inputDto.getTotalAmount()
+                ,inputDto.getExternalInvoice());
     }
 
     @Override
