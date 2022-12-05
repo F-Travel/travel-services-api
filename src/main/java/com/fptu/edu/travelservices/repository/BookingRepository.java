@@ -26,6 +26,7 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
             "CONVERT(b.phone, CHAR(11)) as phone,\n" +
             "b.total_price as totalPrice,\n" +
             "DATE_FORMAT(b.create_time, '%d/%m/%Y') as dateBooking,\n" +
+            "bi.payment_method as paymentMethod,\n" +
             "b.booking_status as bookingStatus\n" +
             "FROM booking as b\n" +
             "INNER JOIN booking_room as br\n" +
@@ -34,8 +35,12 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
             "ON br.room_id = rt.id\n" +
             "INNER JOIN hotel as h\n" +
             "ON h.id= rt.hotel_id\n" +
+            "LEFT JOIN bill as bi\n" +
+            "ON b.id = bi.booking_id\n" +
             "WHERE b.booking_status = 'booking waiting approve'\n" +
-            "and rt.id = ?1", nativeQuery = true)
+            "and h.id = ?1\n" +
+            "group by b.id"
+            , nativeQuery = true)
     List<BookingList> getListBooking(int hotelId);
 
 

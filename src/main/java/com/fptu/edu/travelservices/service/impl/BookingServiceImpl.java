@@ -2,6 +2,7 @@ package com.fptu.edu.travelservices.service.impl;
 
 import com.fptu.edu.travelservices.common.DateCommon;
 import com.fptu.edu.travelservices.dto.out.booking.*;
+import com.fptu.edu.travelservices.dto.out.hotel.HotelListOutputDto;
 import com.fptu.edu.travelservices.dto.result.*;
 import com.fptu.edu.travelservices.dto.in.booking.BookingRoomInputDto;
 import com.fptu.edu.travelservices.entity.Booking;

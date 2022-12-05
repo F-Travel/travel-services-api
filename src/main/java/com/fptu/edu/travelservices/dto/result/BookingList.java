@@ -10,5 +10,6 @@ public interface BookingList {
     String getPhone();
     String getTotalPrice();
     String getDateBooking();
+    String getPaymentMethod();
     String getBookingStatus();
 }

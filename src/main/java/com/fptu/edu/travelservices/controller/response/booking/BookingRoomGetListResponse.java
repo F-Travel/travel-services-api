@@ -37,6 +37,9 @@ public class BookingRoomGetListResponse {
     @JsonProperty("date_booking")
     private String dateBooking;
 
+    @JsonProperty("payment_method")
+    private String paymentMethod;
+
     @JsonProperty("booking_status")
     private String bookingStatus;
 }

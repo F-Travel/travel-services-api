@@ -27,5 +27,7 @@ public class BookingRoomListOutputDto {
 
     private String dateBooking;
 
+    private String paymentMethod;
+
     private String bookingStatus;
 }
