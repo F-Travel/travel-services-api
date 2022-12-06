@@ -5,6 +5,7 @@ import com.fptu.edu.travelservices.config.PaymentConfig;
 import com.fptu.edu.travelservices.controller.request.bill.BillAddNewRequest;
 import com.fptu.edu.travelservices.controller.response.bill.PaymentUrlResponse;
 import com.fptu.edu.travelservices.dto.in.bill.BillAddNewInputDto;
+import com.fptu.edu.travelservices.dto.in.bill.BillUpateInfoInputDto;
 import com.fptu.edu.travelservices.service.BillService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

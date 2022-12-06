@@ -31,12 +31,15 @@ public interface BillRepository extends JpaRepository<Bill, Integer> {
             "WHERE bk.user_id = ?1", nativeQuery = true)
     List<BillHistoryList> getHistoryBill(int userId);
 
+    @Query(value = "SELECT Max(id) as id FROM bill", nativeQuery = true)
+    int getFistIdBill();
+
     @Transactional
     @Modifying
     @Query(value = "UPDATE bill\n" +
             "SET external_transaction = ?1,\n" +
             "total_amount = ?2,\n" +
             "status_bill = 'Đã thanh toán'\n" +
-            "WHERE external_invoice = ?3;", nativeQuery = true)
-    void saveBillInfo(String transaction,String amount,String invoice);
+            "WHERE id  = ?3;", nativeQuery = true)
+    void saveBillInfo(String transaction,String amount,int id);
 }
