@@ -48,10 +48,10 @@ public class Hotel {
     private Integer cityId;
 
     @Column(name = "Latitude")
-    private float latitude;
+    private String latitude;
 
     @Column(name = "Longitude")
-    private float longitude;
+    private String longitude;
 
     @Column(name = "StatusHotel")
     private String statusHotel;

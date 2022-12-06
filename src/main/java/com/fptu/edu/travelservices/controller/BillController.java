@@ -2,7 +2,6 @@ package com.fptu.edu.travelservices.controller;
 
 import com.fptu.edu.travelservices.controller.response.bill.BillHistoryListResponse;
 import com.fptu.edu.travelservices.dto.in.bill.BillUpateInfoInputDto;
-import com.fptu.edu.travelservices.dto.in.hotel.HotelUpdateInputDto;
 import com.fptu.edu.travelservices.dto.out.bill.BillHistoryListOutputDto;
 import com.fptu.edu.travelservices.service.BillService;
 import org.modelmapper.ModelMapper;

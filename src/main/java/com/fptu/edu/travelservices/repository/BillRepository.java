@@ -37,9 +37,7 @@ public interface BillRepository extends JpaRepository<Bill, Integer> {
     @Transactional
     @Modifying
     @Query(value = "UPDATE bill\n" +
-            "SET external_transaction = ?1,\n" +
-            "total_amount = ?2,\n" +
-            "status_bill = 'Đã thanh toán'\n" +
-            "WHERE id  = ?3;", nativeQuery = true)
-    void saveBillInfo(String transaction,String amount,int id);
+            "SET status_bill = 'Đã Thanh Toán'\n" +
+            "WHERE id = ?1", nativeQuery = true)
+    void saveBillInfo(int id);
 }

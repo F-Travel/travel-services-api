@@ -56,9 +56,7 @@ public class BillServiceImpl implements BillService {
 
         int billId = billRepository.getFistIdBill();
 
-        billRepository.saveBillInfo(inputDto.getExternalTransaction()
-                ,inputDto.getTotalAmount()
-                ,billId);
+        billRepository.saveBillInfo(billId);
     }
 
     @Override

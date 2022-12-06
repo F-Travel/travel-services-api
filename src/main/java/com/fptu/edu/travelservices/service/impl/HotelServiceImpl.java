@@ -67,8 +67,8 @@ public class HotelServiceImpl implements HotelService {
 
         /*mapping data hotel entity*/
         Hotel hotel = mapper.map(inputDto, Hotel.class);
-        hotel.setLatitude(Float.parseFloat(inputDto.getLatitude()));
-        hotel.setLongitude(Float.parseFloat(inputDto.getLongitude()));
+        hotel.setLatitude(inputDto.getLatitude());
+        hotel.setLongitude(inputDto.getLongitude());
         hotel.setCityId(Integer.parseInt(inputDto.getCityId()));
         hotel.setIsPaymentCard(Boolean.parseBoolean(inputDto.getIsPaymentCard()));
         hotel.setOwnerId(Long.parseLong(inputDto.getOwnerId()));
@@ -196,8 +196,8 @@ public class HotelServiceImpl implements HotelService {
                 .address(hotels.get().getAddress())
                 .checkOutTime(hotels.get().getCheckOutTime())
                 .checkInTime(hotels.get().getCheckInTime())
-                .latitude(String.valueOf(hotels.get().getLatitude()))
-                .longitude(String.valueOf(hotels.get().getLongitude()))
+                .latitude(hotels.get().getLatitude())
+                .longitude(hotels.get().getLongitude())
                 .isPaymentCard(String.valueOf(hotels.get().getIsPaymentCard()))
                 .build();
 
