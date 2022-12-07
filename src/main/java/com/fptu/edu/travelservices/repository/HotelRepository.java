@@ -34,6 +34,7 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
             "h.address as address,\n" +
             "h.description as description,\n" +
             "h.image as image,\n" +
+            "h.status_hotel as statusHotel,\n" +
             "h.phone as phone,\n" +
             "ROUND(AVG(f.star_point),1) as startPoint,\n" +
             "ROUND(AVG(rt.price),3) as price\n" +
