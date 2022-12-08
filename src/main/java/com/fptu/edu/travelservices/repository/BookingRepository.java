@@ -18,7 +18,7 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
     @Query(value = "SELECT\n" +
             "b.id as id,\n" +
-            "rt.type_room_name as roomName,\n" +
+//            "rt.type_room_name as roomName,\n" +
             "DATE_FORMAT(b.check_in, '%d/%m/%Y') as checkIn,\n" +
             "DATE_FORMAT(b.check_out, '%d/%m/%Y') as checkOut,\n" +
             "b.user_booking as userBooking,\n" +
@@ -28,18 +28,18 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
             "DATE_FORMAT(b.create_time, '%d/%m/%Y') as dateBooking,\n" +
             "bi.payment_method as paymentMethod,\n" +
             "b.booking_status as bookingStatus\n" +
-            "FROM booking as b\n" +
-            "INNER JOIN booking_room as br\n" +
+            "FROM travelservice.booking as b\n" +
+            "INNER JOIN travelservice.booking_room as br\n" +
             "ON b.id = br.booking_id\n" +
-            "INNER JOIN room_type as rt\n" +
+            "INNER JOIN travelservice.room_type as rt\n" +
             "ON br.room_id = rt.id\n" +
-            "INNER JOIN hotel as h\n" +
+            "INNER JOIN travelservice.hotel as h\n" +
             "ON h.id= rt.hotel_id\n" +
-            "LEFT JOIN bill as bi\n" +
+            "LEFT JOIN travelservice.bill as bi\n" +
             "ON b.id = bi.booking_id\n" +
             "WHERE b.booking_status = 'booking waiting approve'\n" +
-            "and h.id = ?1\n" +
-            "group by b.id"
+            "and h.id = ?1\n"
+//            "group by b.id"
             , nativeQuery = true)
     List<BookingList> getListBooking(int hotelId);
 
