@@ -28,5 +28,6 @@ public class HistoryBookingResponse {
     @JsonProperty("bookingStatus")
     private String bookingStatus;
 
+    @JsonProperty("roomBookingHistory")
     List<RoomBookingHistoryOutputDto> roomBookingHistory;
 }

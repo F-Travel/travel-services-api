@@ -38,8 +38,9 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
             "LEFT JOIN travelservice.bill as bi\n" +
             "ON b.id = bi.booking_id\n" +
             "WHERE b.booking_status = 'booking waiting approve'\n" +
-            "and h.id = ?1\n"
+            "and h.id = ?1\n" +
 //            "group by b.id"
+            "order by b.create_time DESC\n"
             , nativeQuery = true)
     List<BookingList> getListBooking(int hotelId);
 
@@ -49,7 +50,8 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
             "ht.hotel_name as hotelName,\n" +
             "ht.image as image,\n" +
             "ht.address as address,\n" +
-            "b.booking_status as bookingStatus\n" +
+            "b.booking_status as bookingStatus,\n" +
+            "b.create_time as createTime\n" +
             "FROM booking as b\n" +
             "INNER JOIN booking_room as br\n" +
             "ON b.id = br.booking_id\n" +
@@ -57,10 +59,13 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
             "ON br.room_id = rt.id\n" +
             "INNER JOIN hotel as ht\n" +
             "ON rt.hotel_id = ht.id\n" +
-            "WHERE b.user_id = ?1", nativeQuery = true)
+            "WHERE b.user_id = ?1\n"+
+            "order by b.create_time DESC\n"
+            , nativeQuery = true)
     List<HistoryBooking> getHistoryBooking(int userId);
 
     @Query(value = "SELECT DISTINCT\n" +
+            "b.id as id,\n" +
             "rt.type_room_name as roomName\n" +
             "FROM booking as b\n" +
             "INNER JOIN booking_room as br\n" +

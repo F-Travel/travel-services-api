@@ -92,9 +92,12 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public int updateHotel(HotelUpdateInputDto i, int id) {
+
+        int isPaymentCheck = Integer.parseInt(i.getIsPaymentCard());
+
         hotelRepository.updateHotel(i.getHotelName(), i.getDescription(),i.getAddress(),i.getCityId(),
                 i.getPhone(),i.getImage(), i.getImage1(), i.getImage2(),i.getImage3(), i.getImage4(),
-                i.getLatitude(), i.getLongitude(), i.getIsPaymentCard(), i.getCheckOutTime(), i.getCheckInTime(), id);
+                i.getLatitude(), i.getLongitude(), isPaymentCheck, i.getCheckOutTime(), i.getCheckInTime(), id);
 
         return 0;
     }

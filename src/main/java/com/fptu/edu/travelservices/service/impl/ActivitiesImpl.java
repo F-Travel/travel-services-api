@@ -4,6 +4,7 @@ import com.fptu.edu.travelservices.common.DateCommon;
 import com.fptu.edu.travelservices.dto.in.activities.ActivitiesAddNewInputDto;
 import com.fptu.edu.travelservices.dto.out.activities.ActivitieSuggestionOutputDto;
 import com.fptu.edu.travelservices.dto.out.activities.ActivitiesDetailOutputDto;
+import com.fptu.edu.travelservices.dto.out.activities.ActivitiesListOutputDto;
 import com.fptu.edu.travelservices.dto.out.bill.BillHistoryListOutputDto;
 import com.fptu.edu.travelservices.dto.out.hotel.HotelTopListOutputDto;
 import com.fptu.edu.travelservices.dto.result.HotelTopList;
@@ -91,5 +92,21 @@ public class ActivitiesImpl implements ActivitiesService {
         outputDto.setHotelList(outputDtos);
 
         return outputDto;
+    }
+
+    @Override
+    public List<ActivitiesListOutputDto> getListActivities() {
+
+        List<Activities> activitiesList = activitiesRepository.findAll();
+
+        Type listType = new TypeToken<List<ActivitiesListOutputDto>>(){}.getType();
+        List<ActivitiesListOutputDto> outputDtos = mapper.map(activitiesList , listType);
+
+        return outputDtos;
+    }
+
+    @Override
+    public void deleteActivities(int id) {
+        activitiesRepository.deleteById(id);
     }
 }

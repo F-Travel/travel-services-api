@@ -21,7 +21,9 @@ import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -103,25 +105,46 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<HistoryBookingOutputDto> getListHistoryBooking(int userId) {
+
         List<HistoryBooking> historyBookings = bookingRepository.getHistoryBooking(userId);
-//
-//        HistoryBookingOutputDto outputDto = new HistoryBookingOutputDto();
-//
-//        List<HistoryBookingOutputDto> outputDtoList;
 
         Type listType = new TypeToken<List<HistoryBookingOutputDto>>(){}.getType();
         List<HistoryBookingOutputDto> bookingOutputDtos = mapper.map(historyBookings , listType);
 
-//        outputDtoList = mapper.map(bookingOutputDtos, )
-//
-//        List<RoomHistoryBooking> roomHistoryBookings = bookingRepository.getRoomHistoryBooking(userId);
-//
-//        Type listTypeRoom = new TypeToken<List<RoomBookingHistoryOutputDto>>(){}.getType();
-//        List<RoomBookingHistoryOutputDto> bookingRoom = mapper.map(roomHistoryBookings , listType);
-//
-//        outputDto.setRoomBookingHistory(bookingRoom);
+        HistoryBookingOutputDto outputDto = new HistoryBookingOutputDto();
 
-        return bookingOutputDtos;
+        List<RoomHistoryBooking> roomHistoryBookings = bookingRepository.getRoomHistoryBooking(userId);
+
+        Type listTypes = new TypeToken<List<RoomBookingHistoryOutputDto>>(){}.getType();
+        List<RoomBookingHistoryOutputDto> bookingHistory = mapper.map(roomHistoryBookings , listTypes);
+
+        HashMap<String, List<RoomBookingHistoryOutputDto>> javaBooksAuthorsMap = new HashMap<>();
+        for(RoomBookingHistoryOutputDto i : bookingHistory){
+            if (javaBooksAuthorsMap.get(i.getId()) == null){
+                List<RoomBookingHistoryOutputDto> rooms = new ArrayList<>();
+                rooms.add(i);
+                javaBooksAuthorsMap.put(i.getId(),rooms);
+
+            }else{
+                javaBooksAuthorsMap.get(i.getId()).add(i);
+            }
+        }
+
+//        for (String i : javaBooksAuthorsMap.keySet()){
+//            System.out.println("////////////// "+i);
+//            for (RoomBookingHistoryOutputDto j: javaBooksAuthorsMap.get(i)){
+//                System.out.println(j);
+//            }
+//        }
+        List<HistoryBookingOutputDto> listOut = new ArrayList<>();
+        for (HistoryBookingOutputDto i : bookingOutputDtos){
+            HistoryBookingOutputDto out = new HistoryBookingOutputDto(i.getId(), i.getHotelName(),i.getImage(),i.getAddress(),i.getBookingStatus(),javaBooksAuthorsMap.get(i.getId()));
+            listOut.add(out);
+        }
+//        for (HistoryBookingOutputDto i : listOut)
+//            System.out.println(i.toString());
+
+        return listOut;
     }
 
     @Override

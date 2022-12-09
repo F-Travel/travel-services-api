@@ -9,5 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RoomBookingHistoryOutputDto {
 
+    private String id;
+
     private String roomName;
 }

@@ -94,16 +94,16 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
             "phone = ?5,\n" +
             "image = ?6,\n" +
             "image1 = ?7,\n" +
-            "image2 = ?10,\n" +
-            "image3 = ?11,\n" +
-            "image4 = ?12,\n" +
-            "latitude = ?13,\n" +
-            "longitude = ?14,\n" +
-            "is_payment_card = ?15,\n" +
-            "check_out_time = ?16,\n" +
-            "check_in_time = ?17\n" +
-            "WHERE id = ?18;", nativeQuery = true)
+            "image2 = ?8,\n" +
+            "image3 = ?9,\n" +
+            "image4 = ?10,\n" +
+            "latitude = ?11,\n" +
+            "longitude = ?12,\n" +
+            "is_payment_card = ?13,\n" +
+            "check_out_time = ?14,\n" +
+            "check_in_time = ?15\n" +
+            "WHERE id = ?16", nativeQuery = true)
     void updateHotel(String hotelName,String description,String address,String cityId,String phone
             ,String image,String image1,String image2,String image3,String image4,String latitude
-            ,String longitude,String isPaymentCard,String checkOutTime,String checkInTime, int id);
+            ,String longitude,int isPaymentCard,String checkOutTime,String checkInTime, int id);
 }
