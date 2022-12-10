@@ -45,7 +45,7 @@ public class HotelUpdateRequest {
     @JsonProperty(value = "latitude")
     private String latitude;
 
-    @JsonProperty(value = "longtitude")
+    @JsonProperty(value = "longitude")
     private String longitude;
 
     @JsonProperty(value = "check_in_time")
