@@ -64,7 +64,9 @@ public class PaymentController {
 
         String vnp_Amount = orderAmount.toString();
 
-        Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+9"));
+        Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
+
+        cld.add(Calendar.HOUR, 7);
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         String vnp_CreateDate = formatter.format(cld.getTime());
