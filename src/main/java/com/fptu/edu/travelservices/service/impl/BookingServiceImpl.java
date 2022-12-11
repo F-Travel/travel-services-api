@@ -21,10 +21,7 @@ import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,12 +50,19 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public int saveRequestBooking(BookingRoomInputDto inputDto) {
 
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date startDate;
+
+        Date endDate;
 
         Booking booking = new Booking();
         try {
-            booking.setCheckIn(df.parse(inputDto.getCheckIn()));
-            booking.setCheckOut(df.parse(inputDto.getCheckOut()));
+            startDate = df.parse(inputDto.getCheckIn());
+            endDate = df.parse(inputDto.getCheckOut());
+
+            booking.setCheckIn(startDate);
+            booking.setCheckOut(endDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -130,19 +134,11 @@ public class BookingServiceImpl implements BookingService {
             }
         }
 
-//        for (String i : javaBooksAuthorsMap.keySet()){
-//            System.out.println("////////////// "+i);
-//            for (RoomBookingHistoryOutputDto j: javaBooksAuthorsMap.get(i)){
-//                System.out.println(j);
-//            }
-//        }
         List<HistoryBookingOutputDto> listOut = new ArrayList<>();
         for (HistoryBookingOutputDto i : bookingOutputDtos){
             HistoryBookingOutputDto out = new HistoryBookingOutputDto(i.getId(), i.getHotelName(),i.getImage(),i.getAddress(),i.getBookingStatus(),javaBooksAuthorsMap.get(i.getId()));
             listOut.add(out);
         }
-//        for (HistoryBookingOutputDto i : listOut)
-//            System.out.println(i.toString());
 
         return listOut;
     }

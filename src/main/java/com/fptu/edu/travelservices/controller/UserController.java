@@ -12,6 +12,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Type;
@@ -41,6 +42,7 @@ public class UserController {
     }
 
     @GetMapping("/detail/{userId}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<?> getUserInfoById(@PathVariable String userId) {
 
         Long id = Long.parseLong(userId);
@@ -56,6 +58,7 @@ public class UserController {
     }
 
     @PutMapping("/update/{userId}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<?> updateUserById(@PathVariable String userId,
                                             @RequestBody UserUpdateRequest request) {
 

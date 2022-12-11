@@ -23,7 +23,7 @@ public class RoomController {
     private RoomTypeService roomService;
 
     @PostMapping("/register")
-    /*@PreAuthorize("hasRole('MODERATOR')")*/
+    @PreAuthorize("hasRole('MODERATOR')")
     public ResponseEntity<?> registerRoom(@RequestBody RoomRegisterRequest request) {
 
         /*mapping form request register hotel*/
@@ -37,7 +37,7 @@ public class RoomController {
     }
 
     @GetMapping("/detail/{roomId}")
-    /*@PreAuthorize("hasRole('MODERATOR')")*/
+    @PreAuthorize("hasRole('MODERATOR')")
     public ResponseEntity<?> getRoomTypeDetail(@PathVariable String roomId) {
 
         int roomTypeId = Integer.parseInt(roomId);
@@ -53,7 +53,7 @@ public class RoomController {
     }
 
     @PutMapping("/update/{roomId}")
-    /*@PreAuthorize("hasRole('MODERATOR')")*/
+    @PreAuthorize("hasRole('MODERATOR')")
     public ResponseEntity<?> updateRoomType(@PathVariable String roomId,
                                             @RequestBody RoomRegisterRequest request) {
         //To do
@@ -63,7 +63,7 @@ public class RoomController {
     }
 
     @DeleteMapping("/delete/{roomId}")
-    /*@PreAuthorize("hasRole('MODERATOR')")*/
+    @PreAuthorize("hasRole('MODERATOR')")
     public ResponseEntity<?> deleteRoomType(@PathVariable String roomId) {
         //To do
         return ResponseEntity

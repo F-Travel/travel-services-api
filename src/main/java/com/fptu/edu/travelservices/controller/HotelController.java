@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Type;
@@ -33,6 +34,7 @@ public class HotelController {
     @Autowired
     private HotelService hotelService;
 
+    @PreAuthorize("hasRole('MODERATOR')")
     @PostMapping("/register")
     public ResponseEntity<?> registerHotel(@RequestBody HotelRegisterRequest request) {
 
@@ -60,6 +62,7 @@ public class HotelController {
                 .body(hotelResponses);
     }
 
+    @PreAuthorize("hasRole('MODERATOR')")
     @GetMapping("/list-by-ownerId/{ownerId}")
     public ResponseEntity<?> getListHotelByHotelOwner(@PathVariable String ownerId) {
 
@@ -106,6 +109,7 @@ public class HotelController {
                 .body(hotelResponses);
     }
 
+    @PreAuthorize("hasRole('MODERATOR')")
     @PutMapping("/update/{hotelId}")
     public ResponseEntity<?> updateHotel(@PathVariable String hotelId,
                                          @RequestBody HotelUpdateRequest request) {
@@ -120,6 +124,7 @@ public class HotelController {
                 .body(null);
     }
 
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     @DeleteMapping("/delete/{hotelId}")
     public ResponseEntity<?> deleteHotel(@PathVariable String hotelId) {
 
@@ -131,6 +136,7 @@ public class HotelController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/approve/{hotelId}")
     public ResponseEntity<?> approveHotel(@PathVariable String hotelId) {
 

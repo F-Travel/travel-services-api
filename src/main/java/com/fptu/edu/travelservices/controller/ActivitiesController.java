@@ -14,6 +14,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Type;
@@ -31,7 +32,7 @@ public class ActivitiesController {
     private ModelMapper mapper;
 
     @PostMapping("/add-new")
-    /*@PreAuthorize("hasRole('MODERATOR')")*/
+    @PreAuthorize("hasRole('MODERATOR')")
     public ResponseEntity<?> createActivities(@RequestBody ActivitiesAddNewRequest request) {
 
         ActivitiesAddNewInputDto inputDto = mapper.map(request, ActivitiesAddNewInputDto.class);
