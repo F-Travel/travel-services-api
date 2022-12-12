@@ -86,7 +86,7 @@ public class PaymentController {
 
 //        String vnp_ReturnUrl = "http://localhost:3000/bill/payment/booking";
 
-        String vnp_ReturnUrl = "http://localhost:3000/payment/success";
+        String vnp_ReturnUrl = "https://www.f-travel.online/payment/success";
 
         String vnp_TxnRef = externalInvoice;
 
