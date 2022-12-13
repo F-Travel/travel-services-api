@@ -32,7 +32,7 @@ public class ActivitiesController {
     private ModelMapper mapper;
 
     @PostMapping("/add-new")
-    @PreAuthorize("hasRole('MODERATOR')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> createActivities(@RequestBody ActivitiesAddNewRequest request) {
 
         ActivitiesAddNewInputDto inputDto = mapper.map(request, ActivitiesAddNewInputDto.class);
